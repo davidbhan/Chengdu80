@@ -2,7 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import { papers } from "../../actions";
 import { Col, Row } from "antd";
-import "antd/dist/antd.css";
+import { Authors } from "./Authors";
+import { Topics } from "./Topics";
 
 import SearchResults from "../../components/SearchResults";
 
@@ -17,13 +18,19 @@ class Search extends React.Component {
       loading
     } = this.props;
     return (
-      <div>
-        <Row type={"flex"} justify={"center"}>
-          <Col span={20}>
+      <>
+        <Row type={"flex"} justify={"center"} gutter={16}>
+          <Col span={4}>
+            <Authors />
+          </Col>
+          <Col span={16}>
             <SearchResults papers={papers} loading={loading} />
           </Col>
+          <Col span={4}>
+            <Topics />
+          </Col>
         </Row>
-      </div>
+      </>
     );
   }
 }

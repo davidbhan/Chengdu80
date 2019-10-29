@@ -1,9 +1,23 @@
 import React from "react";
-import { Layout, Menu, Breadcrumb, Icon } from "antd";
+import { Layout, Menu, Button, Icon, Row } from "antd";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import styled from "styled-components";
 
-const { Header, Content, Footer, Sider } = Layout;
-const { SubMenu } = Menu;
+import { auth } from "../actions";
+
+import { Author } from "./";
+
+const { Sider } = Layout;
+
+const SideBarItem = styled(Row)`
+  margin-top: 10px;
+`;
+
+const TransparentButton = styled(Button)`
+  background-color: transparent !important;
+  color: white !important;
+`;
 
 class SideMenu extends React.Component {
   state = {
@@ -16,15 +30,44 @@ class SideMenu extends React.Component {
   };
 
   render() {
-    const { children } = this.props;
+    const { children, user, logout } = this.props;
+    const { collapsed } = this.state;
     return (
       <Layout style={{ minHeight: "100vh" }}>
         <Sider
           collapsible
-          collapsed={this.state.collapsed}
+          collapsed={collapsed}
           onCollapse={this.onCollapse}
+          style={{ paddingTop: 5 }}
         >
-          <div className="logo" />
+          {user ? (
+            <>
+              {!collapsed && (
+                <SideBarItem type="flex" justify="center">
+                  <Author name={user.name} color="white" />
+                </SideBarItem>
+              )}
+              <SideBarItem type="flex" justify="center">
+                <TransparentButton onClick={logout}>
+                  <Icon type="logout" />
+                  {!collapsed && "Logout"}
+                </TransparentButton>
+              </SideBarItem>
+            </>
+          ) : (
+            <SideBarItem type="flex" justify="center">
+              <TransparentButton href={"/auth/login"}>
+                <Icon type="login" />
+                {!collapsed && "Login"}
+              </TransparentButton>
+            </SideBarItem>
+          )}
+          <div
+            style={{
+              borderTop: "0.5px solid #9ea7ae",
+              margin: "20px 15px 15px"
+            }}
+          />
           <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
             <Menu.Item key="search">
               <Link to={"/"}>
@@ -46,4 +89,19 @@ class SideMenu extends React.Component {
   }
 }
 
-export default SideMenu;
+const mapStateToProps = state => {
+  return {
+    user: state.auth.user
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    logout: () => dispatch(auth.logout())
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SideMenu);
