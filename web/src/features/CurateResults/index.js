@@ -20,14 +20,23 @@ class Search extends React.Component {
     return (
       <>
         <Row type={"flex"} justify={"center"} gutter={16}>
-          <Col span={4}>
-            <Authors />
-          </Col>
           <Col span={16}>
-            <SearchResults papers={papers} loading={loading} />
+            <Col span={8}>
+              <Row>
+                <Authors />
+              </Row>
+              <Row>
+                <Topics />
+              </Row>
+            </Col>
+            <Col span={16}>
+              <SearchResults papers={papers} loading={loading} />
+            </Col>
           </Col>
-          <Col span={4}>
-            <Topics />
+          <Col span={8}>
+            <div style={{ backgroundColor: "grey", height: "100%" }}>
+              Preview Window
+            </div>
           </Col>
         </Row>
       </>

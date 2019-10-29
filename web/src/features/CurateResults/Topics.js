@@ -4,7 +4,11 @@ import { Card, List } from "antd";
 const mockTopics = [
   "Artificial Intelligence",
   "Malware Detection",
-  "Cryptography"
+  "Cryptography",
+  "Artificial Intelligence",
+  "Malware Detection",
+  "Cryptography",
+  "Artificial Intelligence"
 ];
 
 export const Topics = () => (

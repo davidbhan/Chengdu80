@@ -13,26 +13,22 @@ const SearchResults = ({ papers, loading, addItem }) => {
     <List
       loading={loading}
       itemLayout="vertical"
-      size="large"
+      size="small"
       pagination={{
         onChange: page => {
           console.log(page);
         },
-        pageSize: 3
+        pageSize: 7
       }}
       dataSource={papers}
       renderItem={item => (
         <List.Item
           key={item.title}
           actions={[
-            <IconText type="plus-circle" text={"Add results like these"} />,
-            <IconText type="user-add" text={"Add authors like these"} />
+            <IconText type="plus-circle" text={"Add results like these"} />
           ]}
         >
-          <List.Item.Meta
-            title={<a href={item.href}>{item.name}</a>}
-            description={item.description}
-          />
+          <List.Item.Meta title={<a href={item.href}>{item.name}</a>} />
         </List.Item>
       )}
     />
