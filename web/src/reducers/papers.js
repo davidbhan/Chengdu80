@@ -4,7 +4,7 @@ const initialState = {
   papers: []
 };
 
-export default function products(state = initialState, action) {
+export default function papers(state = initialState, action) {
   switch (action.type) {
     case types.RECEIVE_PRODUCTS:
       return {

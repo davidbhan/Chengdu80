@@ -2,13 +2,13 @@ import axios from "axios";
 
 import * as types from "../constants/ActionTypes";
 
-export const getAllProducts = () => {
+export const getAllPapers = () => {
   return (dispatch, getState) => {
     return axios
       .get("/api/papers/")
       .then(res => {
-        const products = res.data;
-        return dispatch({ type: types.RECEIVE_PRODUCTS, products });
+        const papers = res.data;
+        return dispatch({ type: types.RECEIVE_PRODUCTS, papers });
       })
       .catch(error => {
         const { response } = error;

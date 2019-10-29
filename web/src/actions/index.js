@@ -1,4 +1,4 @@
 import * as auth from "./auth";
-import * as products from "./products";
+import * as papers from "./papers";
 
-export { auth, products };
+export { auth, papers };

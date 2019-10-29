@@ -1,10 +1,10 @@
 import { combineReducers } from "redux";
 import auth from "./auth";
-import products from "./products";
+import papers from "./papers.js";
 
 const reducers = combineReducers({
   auth,
-  products
+  papers
 });
 
 export default reducers;
