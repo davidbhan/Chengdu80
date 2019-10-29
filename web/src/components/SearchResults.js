@@ -1,5 +1,5 @@
 import React from "react";
-import { Icon, List } from "antd";
+import { Avatar, Icon, List } from "antd";
 
 const IconText = ({ type, text }) => (
   <span>

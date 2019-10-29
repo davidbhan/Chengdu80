@@ -1,5 +1,5 @@
 import React from "react";
-import { Avatar } from "antd";
+import { Avatar, Icon, List } from "antd";
 import styled from "styled-components";
 
 const LeftPaddedText = styled.span`
@@ -7,13 +7,11 @@ const LeftPaddedText = styled.span`
   color: ${props => props.color || "default"};
 `;
 
-const AuthorContainer = styled.div`
-  padding: 5px;
-`;
-
 export const Author = ({ name, color }) => (
-  <AuthorContainer>
-    <Avatar icon="user" />
-    <LeftPaddedText color={color}>{name}</LeftPaddedText>
-  </AuthorContainer>
+  <List.Item key={name} actions={[<Icon type="like" />]}>
+    <List.Item.Meta
+      title={<a href={""}>{name}</a>}
+      avatar={<Avatar icon="user" />}
+    />
+  </List.Item>
 );

@@ -7,6 +7,7 @@ import styled from "styled-components";
 import { auth } from "../actions";
 
 import { Author } from "./";
+import { User } from "./User";
 
 const { Sider } = Layout;
 
@@ -44,7 +45,7 @@ class SideMenu extends React.Component {
             <>
               {!collapsed && (
                 <SideBarItem type="flex" justify="center">
-                  <Author name={user.name} color="white" />
+                  <User name={user.name} color="white" />
                 </SideBarItem>
               )}
               <SideBarItem type="flex" justify="center">
