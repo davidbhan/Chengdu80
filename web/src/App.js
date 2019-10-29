@@ -14,6 +14,7 @@ import NotFound from "./components/NotFound";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 import CurrentBox from "./components/CurrentBox";
+import Visualisations from "./components/Visualisations";
 
 let store = createStore(ponyApp, composeWithDevTools(applyMiddleware(thunk)));
 
@@ -57,6 +58,7 @@ class RootContainerComponent extends React.Component {
       <AppBar>
         <Switch>
           <Route exact path="/" component={CurrentBox} />
+          <Route exact path={"/visualize"} componen={Visualisations} />
           <Route component={NotFound} />
         </Switch>
       </AppBar>

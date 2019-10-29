@@ -3,28 +3,31 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { Button, Col, Icon, Row } from "antd";
 import { auth } from "../actions";
+import SideMenu from "./SideMenu";
 
 class AppBar extends React.Component {
   render() {
     const { children, user, logout } = this.props;
     return (
       <div>
-        <Row type={"flex"} justify={"end"} style={{ padding: 20 }}>
-          <Col span={4}>
-            {user ? (
-              <Button onClick={logout}>
-                <Icon type="user" />
-                Logout
-              </Button>
-            ) : (
-              <Button href={"/auth/login"}>
-                <Icon type="user" />
-                Login
-              </Button>
-            )}
-          </Col>
-        </Row>
-        {children}
+        <SideMenu>
+          <Row type={"flex"} justify={"end"} style={{ padding: 20 }}>
+            <Col span={4}>
+              {user ? (
+                <Button onClick={logout}>
+                  <Icon type="user" />
+                  Logout
+                </Button>
+              ) : (
+                <Button href={"/auth/login"}>
+                  <Icon type="user" />
+                  Login
+                </Button>
+              )}
+            </Col>
+          </Row>
+          {children}
+        </SideMenu>
       </div>
     );
   }
