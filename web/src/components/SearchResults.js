@@ -1,19 +1,5 @@
 import React from "react";
-import { Avatar, Icon, List } from "antd";
-
-const listData = [];
-
-for (let i = 0; i < 23; i++) {
-  listData.push({
-    href: "http://ant.design",
-    title: `ant design part ${i}`,
-    avatar: "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
-    description:
-      "Ant Design, a design language for background applications, is refined by Ant UED Team.",
-    content:
-      "We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently."
-  });
-}
+import { Icon, List } from "antd";
 
 const IconText = ({ type, text }) => (
   <span>
@@ -22,9 +8,10 @@ const IconText = ({ type, text }) => (
   </span>
 );
 
-function SearchResults() {
+const SearchResults = ({ papers, loading, addItem }) => {
   return (
     <List
+      loading={loading}
       itemLayout="vertical"
       size="large"
       pagination={{
@@ -33,29 +20,23 @@ function SearchResults() {
         },
         pageSize: 3
       }}
-      dataSource={listData}
-      footer={
-        <div>
-          <b>ant design</b> footer part
-        </div>
-      }
+      dataSource={papers}
       renderItem={item => (
         <List.Item
           key={item.title}
           actions={[
-            <IconText type="star-o" text="156" key="list-vertical-star-o" />,
-            <IconText type="like-o" text="156" key="list-vertical-like-o" />,
-            <IconText type="message" text="2" key="list-vertical-message" />
+            <IconText type="plus-circle" text={"Add results like these"} />,
+            <IconText type="user-add" text={"Add authors like these"} />
           ]}
         >
           <List.Item.Meta
-            title={<a href={item.href}>{item.title}</a>}
+            title={<a href={item.href}>{item.name}</a>}
             description={item.description}
           />
         </List.Item>
       )}
     />
   );
-}
+};
 
 export default SearchResults;

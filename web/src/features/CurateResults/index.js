@@ -1,27 +1,26 @@
 import React from "react";
 import { connect } from "react-redux";
-import { products } from "../../actions";
-import { Row, Col } from "antd";
-import { Input } from "antd";
-import { Typography } from "antd";
+import { papers } from "../../actions";
+import { Col, Row } from "antd";
 import "antd/dist/antd.css";
 
-import ProductsTable from "../../components/ProductsTable";
+import SearchResults from "../../components/SearchResults";
 
 class Search extends React.Component {
   componentDidMount() {
-    this.props.getAllProducts();
+    this.props.getAllPapers();
   }
 
   render() {
     const {
-      products: { products }
+      papers: { papers },
+      loading
     } = this.props;
     return (
       <div>
         <Row type={"flex"} justify={"center"}>
-          <Col span={20} style={{ textAlign: "center" }}>
-            <ProductsTable products={products} />
+          <Col span={20}>
+            <SearchResults papers={papers} loading={loading} />
           </Col>
         </Row>
       </div>
@@ -31,14 +30,15 @@ class Search extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    products: state.products
+    papers: state.papers,
+    loading: state.papers.loading
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    getAllProducts: () => {
-      dispatch(products.getAllProducts());
+    getAllPapers: () => {
+      dispatch(papers.getAllPapers());
     }
   };
 };
