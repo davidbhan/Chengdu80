@@ -29,6 +29,7 @@ urlpatterns = [
     path('api/auth/', include('users.urls')),
     path('api/auth/', include('knox.urls')),
     path('api-auth/', include('rest_framework.urls')),
+    path('api/curate/', include('curate.urls')),
     path('', TemplateView.as_view(template_name="index.html"), name='react-home'),
     url(r'^(?:.*)/?$', TemplateView.as_view(template_name="index.html"), name='react-other')
 ]
