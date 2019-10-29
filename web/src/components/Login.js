@@ -3,58 +3,78 @@ import { connect } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
 
 import { auth } from "../actions";
+import { Button, Checkbox, Col, Form, Icon, Input, Row } from "antd";
 
 class Login extends React.Component {
-  state = {
-    email: "",
-    password: ""
-  };
-
   onSubmit = e => {
     e.preventDefault();
-    this.props.login(this.state.email, this.state.password);
+    this.props.form.validateFields((err, values) => {
+      if (!err) {
+        console.log("Received values of form: ", values);
+        this.props.login(values.username, values.password);
+      }
+    });
   };
 
   render() {
     if (this.props.isAuthenticated) {
       return <Redirect to="/" />;
     }
+    const { getFieldDecorator } = this.props.form;
     return (
-      <form onSubmit={this.onSubmit}>
-        <fieldset>
-          <legend>Login</legend>
-          {this.props.errors.length > 0 && (
-            <ul>
-              {this.props.errors.map(error => (
-                <li key={error.field}>{error.message}</li>
-              ))}
-            </ul>
-          )}
-          <p>
-            <label htmlFor="email">Email</label>
-            <input
-              type="text"
-              id="email"
-              onChange={e => this.setState({ email: e.target.value })}
-            />
-          </p>
-          <p>
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              id="password"
-              onChange={e => this.setState({ password: e.target.value })}
-            />
-          </p>
-          <p>
-            <button type="submit">Login</button>
-          </p>
-
-          <p>
-            Don't have an account? <Link to="/auth/signup">Sign Up</Link>
-          </p>
-        </fieldset>
-      </form>
+      <Row
+        type={"flex"}
+        justify={"center"}
+        align={"middle"}
+        style={{ height: "100vh" }}
+      >
+        <Col span={8}>
+          <Form onSubmit={this.onSubmit} className="login-form">
+            <Form.Item>
+              {getFieldDecorator("username", {
+                rules: [
+                  { required: true, message: "Please input your username!" }
+                ]
+              })(
+                <Input
+                  prefix={
+                    <Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />
+                  }
+                  placeholder="Username"
+                />
+              )}
+            </Form.Item>
+            <Form.Item>
+              {getFieldDecorator("password", {
+                rules: [
+                  { required: true, message: "Please input your Password!" }
+                ]
+              })(
+                <Input
+                  prefix={
+                    <Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />
+                  }
+                  type="password"
+                  placeholder="Password"
+                />
+              )}
+            </Form.Item>
+            <Form.Item>
+              <Button
+                type="primary"
+                htmlType="submit"
+                className="login-form-button"
+                style={{ width: "100%" }}
+              >
+                Log in
+              </Button>
+            </Form.Item>
+            <Form.Item>
+              Or <a href="/auth/signup">register now!</a>
+            </Form.Item>
+          </Form>
+        </Col>
+      </Row>
     );
   }
 }
@@ -83,4 +103,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Login);
+)(Form.create({ name: "login" })(Login));
