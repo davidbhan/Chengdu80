@@ -1,0 +1,18 @@
+[[source]]
+
+url = "https://pypi.python.org/simple"
+verify_ssl = true
+name = "pypi"
+
+
+[packages]
+
+django = "*"
+django-webpack-loader = "*"
+djangorestframework = "*"
+django-rest-knox = "*"
+gunicorn = "*"
+django-heroku = "*"
+
+
+[dev-packages]
