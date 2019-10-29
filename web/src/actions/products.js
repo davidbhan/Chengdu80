@@ -5,7 +5,7 @@ import * as types from "../constants/ActionTypes";
 export const getAllProducts = () => {
   return (dispatch, getState) => {
     return axios
-      .get("/api/products/")
+      .get("/api/papers/")
       .then(res => {
         const products = res.data;
         return dispatch({ type: types.RECEIVE_PRODUCTS, products });

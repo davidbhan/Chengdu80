@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'webpack_loader',
     'rest_framework',
     'knox',
-    'products.apps.ProductsConfig',
+    'papers.apps.PapersConfig',
     'users.apps.UsersConfig',
 ]
 
