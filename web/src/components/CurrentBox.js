@@ -1,8 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Box, Heading } from "grommet";
-
 import { products } from "../actions";
+import { Row, Col } from "antd";
+import { Input } from "antd";
+import { Typography } from "antd";
+import "antd/dist/antd.css";
+
 import ProductsTable from "./ProductsTable";
 
 class CurrentBox extends React.Component {
@@ -15,16 +18,18 @@ class CurrentBox extends React.Component {
       products: { products }
     } = this.props;
     return (
-      <Box>
-        <Box direction="row" pad="medium" justify="around">
-          <Box pad="medium">
-            <Heading level="4" margin="small">
-              Research Papers
-            </Heading>
-            <ProductsTable products={products} addItem={() => {}} />
-          </Box>
-        </Box>
-      </Box>
+      <div>
+        <Row type={"flex"} justify={"center"}>
+          <Col span={4} style={{ textAlign: "center" }}>
+            <Typography.Title>Dragon</Typography.Title>
+          </Col>
+        </Row>
+        <Row>
+          <Col span={12} offset={6}>
+            <Input.Search />
+          </Col>
+        </Row>
+      </div>
     );
   }
 }
