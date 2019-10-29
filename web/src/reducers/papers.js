@@ -1,7 +1,7 @@
 import * as types from "../constants/ActionTypes";
 
 const initialState = {
-  products: []
+  papers: []
 };
 
 export default function products(state = initialState, action) {
@@ -9,7 +9,7 @@ export default function products(state = initialState, action) {
     case types.RECEIVE_PRODUCTS:
       return {
         ...state,
-        products: action.products
+        papers: action.papers
       };
     default:
       return state;
