@@ -1,14 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
-import { products } from "../actions";
+import { products } from "../../actions";
 import { Row, Col } from "antd";
 import { Input } from "antd";
 import { Typography } from "antd";
 import "antd/dist/antd.css";
 
-import ProductsTable from "./ProductsTable";
+import ProductsTable from "../../components/ProductsTable";
 
-class CurrentBox extends React.Component {
+class Search extends React.Component {
   componentDidMount() {
     this.props.getAllProducts();
   }
@@ -20,13 +20,8 @@ class CurrentBox extends React.Component {
     return (
       <div>
         <Row type={"flex"} justify={"center"}>
-          <Col span={4} style={{ textAlign: "center" }}>
-            <Typography.Title>Dragon</Typography.Title>
-          </Col>
-        </Row>
-        <Row>
-          <Col span={12} offset={6}>
-            <Input.Search />
+          <Col span={20} style={{ textAlign: "center" }}>
+            <ProductsTable products={products} />
           </Col>
         </Row>
       </div>
@@ -51,4 +46,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(CurrentBox);
+)(Search);

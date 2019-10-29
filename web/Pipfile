@@ -13,6 +13,7 @@ djangorestframework = "*"
 django-rest-knox = "*"
 gunicorn = "*"
 django-heroku = "*"
+mysqlclient = "*"
 
 
 [dev-packages]
