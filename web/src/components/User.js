@@ -7,16 +7,16 @@ const LeftPaddedText = styled.span`
   color: ${props => props.color || "default"};
 `;
 
-const AuthorContainer = styled.div`
+const UserContainer = styled.div`
   padding: 5px;
 `;
 
 export const User = ({ name, color }) => {
   return (
-    <AuthorContainer>
+    <UserContainer>
       <Avatar icon="user" />
       <LeftPaddedText color={color}>{name}</LeftPaddedText>
       <Icon type="like" />
-    </AuthorContainer>
+    </UserContainer>
   );
 };
