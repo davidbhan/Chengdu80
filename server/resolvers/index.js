@@ -1,7 +1,9 @@
 import { Query } from "./Query";
+import { Author } from "./Author";
 
 const resolvers = {
-  Query
+  Query,
+  Author
 };
 
 export default resolvers;

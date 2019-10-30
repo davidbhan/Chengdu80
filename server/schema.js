@@ -7,12 +7,15 @@ export const typeDefs = gql`
   }
 
   type Author {
+    id: ID
     name: String
     institution: String
     interests: [String]
+    papers: [Paper]
   }
 
   type Paper {
+    id: ID
     title: String
     abstract: String
     topics: [Topic]
@@ -20,7 +23,14 @@ export const typeDefs = gql`
     publishedDate: String
   }
 
+  type Result {
+    papers: [Paper]
+    authors: [Author]
+    topics: [Topic]
+  }
+
   type Query {
     allPapers: [Paper]
+    search(query: String): Result
   }
 `;
