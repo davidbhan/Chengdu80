@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Avatar, Icon, List } from "antd";
 import styled from "styled-components";
 import { connect } from "react-redux";
-import { paut } from "../actions/index";
+import { paut } from "../../actions";
 
 const LeftPaddedText = styled.span`
   padding-left: 5px;

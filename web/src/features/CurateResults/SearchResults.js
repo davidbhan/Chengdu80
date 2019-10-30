@@ -1,5 +1,6 @@
 import React from "react";
 import { Avatar, Icon, List } from "antd";
+import { Paper } from "./Paper";
 
 const IconText = ({ type, text }) => (
   <span>
@@ -21,16 +22,7 @@ const SearchResults = ({ papers, loading, addItem }) => {
         pageSize: 7
       }}
       dataSource={papers}
-      renderItem={item => (
-        <List.Item
-          key={item.title}
-          actions={[
-            <IconText type="plus-circle" text={"Add results like these"} />
-          ]}
-        >
-          <List.Item.Meta title={<a href={item.href}>{item.name}</a>} />
-        </List.Item>
-      )}
+      renderItem={item => <Paper item={item} />}
     />
   );
 };

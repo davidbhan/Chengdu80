@@ -5,7 +5,7 @@ import { Col, Row } from "antd";
 import { Authors } from "./Authors";
 import { Topics } from "./Topics";
 
-import SearchResults from "../../components/SearchResults";
+import SearchResults from "./SearchResults";
 
 class Search extends React.Component {
   componentDidMount() {

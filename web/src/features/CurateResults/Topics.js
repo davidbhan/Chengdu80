@@ -1,5 +1,7 @@
 import React from "react";
-import { Card, List } from "antd";
+import { Badge, Card, Col, List, Row } from "antd";
+import { Topic } from "./Topic";
+import { connect } from "react-redux";
 
 const mockTopics = [
   "Artificial Intelligence",
@@ -11,12 +13,22 @@ const mockTopics = [
   "Artificial Intelligence"
 ];
 
-export const Topics = () => (
+const mapStateToProps = state => {
+  return {
+    topics: state.paut.topics
+  };
+};
+
+export const Topics = connect(mapStateToProps)(({ topics }) => (
   <Card>
-    <h3>Topics</h3>
-    <List
-      dataSource={mockTopics}
-      renderItem={item => <List.Item>{item}</List.Item>}
-    />
+    <Row type={"flex"} justify={"space-between"}>
+      <Col>
+        <h3>Topics</h3>
+      </Col>
+      <Col>
+        <Badge count={topics.length} showZero />
+      </Col>
+    </Row>
+    <List dataSource={mockTopics} renderItem={item => <Topic topic={item} />} />
   </Card>
-);
+));

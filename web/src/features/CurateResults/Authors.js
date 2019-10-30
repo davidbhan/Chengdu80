@@ -1,6 +1,8 @@
 import React from "react";
-import { Card, List } from "antd";
+import { Badge, Card, Col, List, Row } from "antd";
 import { Author } from "../../components";
+import { connect } from "react-redux";
+import { paut } from "../../actions";
 
 const mockAuthors = [
   "John Doe",
@@ -11,12 +13,25 @@ const mockAuthors = [
   "Bob Lee"
 ];
 
-export const Authors = () => (
+const mapStateToProps = state => {
+  return {
+    authors: state.paut.authors
+  };
+};
+
+export const Authors = connect(mapStateToProps)(({ authors }) => (
   <Card>
-    <h3>Authors</h3>
+    <Row type={"flex"} justify={"space-between"}>
+      <Col>
+        <h3>Authors</h3>
+      </Col>
+      <Col>
+        <Badge count={authors.length} showZero />
+      </Col>
+    </Row>
     <List
       dataSource={mockAuthors}
       renderItem={item => <Author name={item} />}
     />
   </Card>
-);
+));

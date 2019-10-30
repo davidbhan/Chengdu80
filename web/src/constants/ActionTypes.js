@@ -16,3 +16,4 @@ export const GET_PAPERS = "GET_PAPERS";
 
 export const ADD_AUTHOR_TO_LIKE = "ADD_AUTHOR_TO_LIKE";
 export const ADD_PAPER_TO_LIKE = "ADD_PAPER_TO_LIKE";
+export const ADD_TOPIC_TO_LIKE = "ADD_TOPIC_TO_LIKE";

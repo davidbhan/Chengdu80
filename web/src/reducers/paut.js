@@ -18,6 +18,11 @@ export const paut = (state = initialState, action) => {
         ...state,
         papers: [...state.papers, action.payload.paper]
       };
+    case types.ADD_TOPIC_TO_LIKE:
+      return {
+        ...state,
+        topics: [...state.topics, action.payload.topic]
+      };
     default:
       return state;
   }
