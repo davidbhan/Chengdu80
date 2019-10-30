@@ -9,7 +9,7 @@ export const getAllPapers = () => {
       payload: { papers: [], loading: true }
     });
     return axios
-      .get("/api/papers/")
+      .post("/api/papers/")
       .then(res => {
         const papers = res.data;
         return dispatch({
@@ -79,9 +79,19 @@ export const getSearchPapers = searchQuery => {
       payload: { papers: [], loading: true }
     });
     return axios
-      .get("/api/papers/?search=" + searchQuery)
+      .post("/graphql", {
+        query: `query {
+          search(query: "${searchQuery}"){
+          papers{
+          title
+            abstract
+          }
+          }
+        }`
+      })
       .then(res => {
-        const papers = res.data;
+        const papers = res.data.data.search.papers;
+        console.log(papers);
         return dispatch({
           type: types.GET_PAPERS,
           payload: { papers: papers, loading: false }

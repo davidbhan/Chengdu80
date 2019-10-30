@@ -2,7 +2,7 @@
   "name": "dailydose-web",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:8000",
+  "proxy": "http://localhost:4000/graphql",
   "dependencies": {
     "antd": "^3.24.3",
     "axios": "^0.18.0",
