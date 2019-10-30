@@ -82,6 +82,7 @@ export const getSearchPapers = searchQuery => {
       .get("/api/papers/?search=" + searchQuery)
       .then(res => {
         const papers = res.data;
+        console.log(res.data);
         return dispatch({
           type: types.GET_PAPERS,
           payload: { papers: papers, loading: false }
