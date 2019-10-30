@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 
 import os
 import django_heroku
+import certifi
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -43,6 +44,8 @@ INSTALLED_APPS = [
     'knox',
     'papers.apps.PapersConfig',
     'users.apps.UsersConfig',
+    "django_elasticsearch_dsl",
+    "django_elasticsearch_dsl_drf"
 ]
 
 MIDDLEWARE = [
@@ -161,3 +164,11 @@ REST_FRAMEWORK = {
 django_heroku.settings(locals())
 
 AUTH_USER_MODEL = 'users.User'
+
+ELASTICSEARCH_DSL = {
+    'default': {
+        'hosts': 'https://search-gp06chengdu80-37opvyh5nd4c4qqyuviicsouvy.us-east-2.es.amazonaws.com',
+        "use_ssl":True,
+        "ca_certs":certifi.where()
+    },
+}

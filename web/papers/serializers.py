@@ -1,8 +1,11 @@
-from rest_framework import serializers
+from django_elasticsearch_dsl_drf.serializers import DocumentSerializer
 
-from .models import Paper
+from papers.documents import PaperDocument
 
-class PaperSerializer(serializers.ModelSerializer):
+class PaperDocumentSerializer(DocumentSerializer):
     class Meta:
-        model = Paper
-        fields = ('id', 'name', 'description', )
+        document = PaperDocument
+        fields = (
+            'id',
+            'description'
+        )

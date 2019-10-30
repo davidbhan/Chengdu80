@@ -14,6 +14,9 @@ django-rest-knox = "*"
 gunicorn = "*"
 django-heroku = "*"
 mysqlclient = "*"
+django-elasticsearch-dsl = "*"
+django-elasticsearch-dsl-drf = "*"
+certifi = "*"
 
 
 [dev-packages]
