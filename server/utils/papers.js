@@ -46,5 +46,5 @@ const findAuthorPapers = (ElasticSearch, author_ids) => {
   });
 };
 
-export const authorPaperLoader = ElasticSearch =>
+export const authorPapersLoader = ElasticSearch =>
   new DataLoader(author_ids => findAuthorPapers(ElasticSearch, author_ids));

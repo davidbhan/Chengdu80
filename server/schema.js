@@ -6,10 +6,15 @@ export const typeDefs = gql`
     papers: [Paper]
   }
 
+  type Institution {
+    id: ID
+    name: String
+  }
+
   type Author {
     id: ID
     name: String
-    institution: String
+    institution: Institution
     interests: [String]
     papers: [Paper]
   }
@@ -33,5 +38,6 @@ export const typeDefs = gql`
     search(query: String): Result
     paper(id: ID!): Paper
     author(id: ID!): Author
+    topic(name: String!): Topic
   }
 `;
