@@ -15,7 +15,11 @@ class Search extends React.Component {
         </Row>
         <Row>
           <Col span={12} offset={6}>
-            <Input.Search onSearch={() => this.props.history.push("/curate")} />
+            <Input.Search
+              onSearch={text =>
+                this.props.history.push("/curate", { query: text })
+              }
+            />
           </Col>
         </Row>
       </div>

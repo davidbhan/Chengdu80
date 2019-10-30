@@ -9,7 +9,8 @@ import SearchResults from "./SearchResults";
 
 class Search extends React.Component {
   componentDidMount() {
-    this.props.getAllPapers();
+    const { query } = this.props.location.state;
+    this.props.getSearchPapers(query);
   }
 
   render() {
@@ -55,6 +56,9 @@ const mapDispatchToProps = dispatch => {
   return {
     getAllPapers: () => {
       dispatch(papers.getAllPapers());
+    },
+    getSearchPapers: query => {
+      dispatch(papers.getSearchPapers(query));
     }
   };
 };
