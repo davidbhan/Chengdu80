@@ -84,14 +84,12 @@ export const getSearchPapers = searchQuery => {
           search(query: "${searchQuery}"){
           papers{
           title
-            abstract
           }
           }
         }`
       })
       .then(res => {
         const papers = res.data.data.search.papers;
-        console.log(papers);
         return dispatch({
           type: types.GET_PAPERS,
           payload: { papers: papers, loading: false }
