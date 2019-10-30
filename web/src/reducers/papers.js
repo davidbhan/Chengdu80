@@ -13,6 +13,8 @@ export default function papers(state = initialState, action) {
       return {
         ...state,
         papers: action.payload.papers,
+        authors: action.payload.authors,
+        topics: action.payload.topics,
         loading: action.payload.loading
       };
     case types.GET_AUTHORS:
