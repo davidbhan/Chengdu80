@@ -4,8 +4,6 @@ from .models import Paper
 
 @registry.register_document
 class PaperDocument(Document):
-    name = fields.TextField(attr="displayName")
-
     class Index:
         # Name of the Elasticsearch index
         name = 'papers'
@@ -18,6 +16,7 @@ class PaperDocument(Document):
 
         # The fields of the model you want to be indexed in Elasticsearch
         fields = [
+            'displayName',
             'description'
         ]
 
