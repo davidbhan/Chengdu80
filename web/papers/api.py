@@ -1,4 +1,4 @@
-# from rest_framework import viewsets, permissions
+from rest_framework import viewsets, permissions
 # from rest_framework.response import Response
 
 # from .models import Paper
@@ -27,7 +27,7 @@ from django_elasticsearch_dsl_drf.filter_backends import (
     IdsFilterBackend,
     OrderingFilterBackend,
     DefaultOrderingFilterBackend,
-    SearchFilterBackend,
+    CompoundSearchFilterBackend,
 )
 from django_elasticsearch_dsl_drf.viewsets import BaseDocumentViewSet
 from django_elasticsearch_dsl_drf.pagination import PageNumberPagination
@@ -37,7 +37,7 @@ from papers.serializers import PaperDocumentSerializer
 
 
 class PaperViewSet(BaseDocumentViewSet):
-    """The BookDocument view."""
+    permission_classes = [permissions.DjangoModelPermissionsOrAnonReadOnly, ]
 
     document = PaperDocument
     serializer_class = PaperDocumentSerializer
@@ -48,19 +48,23 @@ class PaperViewSet(BaseDocumentViewSet):
         IdsFilterBackend,
         OrderingFilterBackend,
         DefaultOrderingFilterBackend,
-        SearchFilterBackend,
+        CompoundSearchFilterBackend,
     ]
     # Define search fields
     search_fields = (
-        'name',
-        'description',
+        'title',
+        'abstract',
     )
+
+    multi_match_search_fields = (
+        'title',
+        'abstract',
+    )
+
     # # Define filter fields
     filter_fields = {
         'id': {
             'field': 'id',
-            # Note, that we limit the lookups of id field in this example,
-            # to `range`, `in`, `gt`, `gte`, `lt` and `lte` filters.
             'lookups': [
                 LOOKUP_FILTER_RANGE,
                 LOOKUP_QUERY_IN,
@@ -70,12 +74,14 @@ class PaperViewSet(BaseDocumentViewSet):
                 LOOKUP_QUERY_LTE,
             ],
         },
-        'description': 'description.raw',
+        'title': 'title',
+        'abstract': 'abstract',
     }
     # # Define ordering fields
     ordering_fields = {
         'id': 'id',
-        'description': 'description.raw',
+        'title': 'title',
+        'abstract': 'abstract',
     }
     # # Specify default ordering
     # ordering = ('id', 'title', 'price',)

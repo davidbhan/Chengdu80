@@ -30,7 +30,7 @@ export const Paper = connect(
 )(({ item, color, likePaper, papers }) => {
   return (
     <List.Item
-      key={item.displayName}
+      key={item.title}
       actions={[
         <IconText
           onClick={() => likePaper(item)}
@@ -39,7 +39,7 @@ export const Paper = connect(
         />
       ]}
     >
-      <List.Item.Meta title={<a href={item.href}>{item.displayName}</a>} />
+      <List.Item.Meta title={<a href={item.href}>{item.title}</a>} />
     </List.Item>
   );
 });

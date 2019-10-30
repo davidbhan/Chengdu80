@@ -7,6 +7,6 @@ class PaperDocumentSerializer(DocumentSerializer):
         document = PaperDocument
         fields = (
             'id',
-            'displayName',
-            'description'
+            'title',
+            'abstract'
         )

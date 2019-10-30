@@ -6,7 +6,7 @@ from .models import Paper
 class PaperDocument(Document):
     class Index:
         # Name of the Elasticsearch index
-        name = 'papers'
+        name = 'cleanpapers'
         # See Elasticsearch Indices API reference for available settings
         settings = {'number_of_shards': 1,
                     'number_of_replicas': 0}
@@ -16,8 +16,8 @@ class PaperDocument(Document):
 
         # The fields of the model you want to be indexed in Elasticsearch
         fields = [
-            'displayName',
-            'description'
+            'title',
+            'abstract'
         ]
 
         # Ignore auto updating of Elasticsearch when a model is saved
