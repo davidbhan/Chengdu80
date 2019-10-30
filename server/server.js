@@ -1,7 +1,14 @@
-import { ApolloServer, gql } from "apollo-server";
-import { resolvers } from "./resolvers/Query";
+const { ApolloServer } = require("apollo-server-express");
+import resolvers from "./resolvers";
 import { typeDefs } from "./schema";
+import { ElasticSearchClient } from "./services";
 
-const server = new ApolloServer({ typeDefs, resolvers });
+const ElasticSearch = ElasticSearchClient();
+
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  context: { ElasticSearch }
+});
 
 export default server;

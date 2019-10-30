@@ -1,9 +1,9 @@
 import { gql } from "apollo-server";
 
 export const typeDefs = gql`
-  type Book {
-    title: String
-    author: String
+  type Topic {
+    name: String
+    papers: [Paper]
   }
 
   type Author {
@@ -14,7 +14,10 @@ export const typeDefs = gql`
 
   type Paper {
     title: String
+    abstract: String
+    topics: [Topic]
     authors: [Author]
+    publishedDate: String
   }
 
   type Query {

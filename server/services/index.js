@@ -1,0 +1,1 @@
+export { ElasticSearchClient } from "./elasticsearch";

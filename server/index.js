@@ -1,5 +1,10 @@
 import server from "./server";
+const express = require("express");
 
-server.listen().then(({ url }) => {
-  console.log(`🚀  Server ready at ${url}`);
+const app = express();
+
+server.applyMiddleware({ app });
+
+app.listen(4000, () => {
+  console.log("Server is running");
 });
