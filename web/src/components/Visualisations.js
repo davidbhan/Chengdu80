@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 
-function Visualisations({}) {
+function Visualisations() {
   return <div />;
 }
 

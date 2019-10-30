@@ -1,12 +1,10 @@
 import React from "react";
-import { Layout, Menu, Button, Icon, Row } from "antd";
+import { Button, Icon, Layout, Menu, Row } from "antd";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import styled from "styled-components";
 
 import { auth } from "../actions";
-
-import { Author } from "./";
 import { User } from "./User";
 
 const { Sider } = Layout;

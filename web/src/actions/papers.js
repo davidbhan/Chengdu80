@@ -33,8 +33,8 @@ export const getSearchPapers = searchQuery => {
       payload: { papers: [], loading: true }
     });
 
-    const searchQueries = searchQuery.split(" ").map(term => "?search=" + term);
-    const elasticQuery = searchQueries.join("&");
+    // const searchQueries = searchQuery.split(" ").map(term => "?search=" + term);
+    // const elasticQuery = searchQueries.join("&");
 
     return axios
       .get("/api/papers/?search=" + searchQuery)

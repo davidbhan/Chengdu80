@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { Avatar, Icon, List } from "antd";
+import { Icon, List } from "antd";
 import React from "react";
 import { paut } from "../../actions";
 
@@ -26,7 +26,7 @@ export const Topic = connect(
       key={topic}
       actions={[<Icon onClick={() => likeTopic(topic)} type="like" />]}
     >
-      <List.Item.Meta title={<a href={""}>{topic}</a>} />
+      <List.Item.Meta title={<p>{topic}</p>} />
     </List.Item>
   );
 });

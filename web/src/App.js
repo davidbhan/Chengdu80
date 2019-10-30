@@ -4,7 +4,6 @@ import { Provider, connect } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
-import { Grommet } from "grommet";
 
 import { auth } from "./actions";
 import ponyApp from "./reducers";
@@ -18,19 +17,6 @@ import Visualisations from "./components/Visualisations";
 import { CurateResults } from "./features";
 
 let store = createStore(ponyApp, composeWithDevTools(applyMiddleware(thunk)));
-
-const theme = {
-  global: {
-    colors: {
-      brand: "#16a085"
-    },
-    font: {
-      family: "Roboto",
-      size: "14px",
-      height: "20px"
-    }
-  }
-};
 
 class RootContainerComponent extends React.Component {
   componentDidMount() {
@@ -80,14 +66,12 @@ class RootContainerComponent extends React.Component {
   render() {
     const { AppBarLayout, AuthLayout } = this;
     return (
-      <Grommet theme={theme} full>
-        <BrowserRouter>
-          <Switch>
-            <Route path="/auth" component={AuthLayout} />
-            <Route path="/" component={AppBarLayout} />
-          </Switch>
-        </BrowserRouter>
-      </Grommet>
+      <BrowserRouter>
+        <Switch>
+          <Route path="/auth" component={AuthLayout} />
+          <Route path="/" component={AppBarLayout} />
+        </Switch>
+      </BrowserRouter>
     );
   }
 }

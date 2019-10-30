@@ -1,13 +1,6 @@
 import React from "react";
-import { Avatar, Icon, List } from "antd";
+import { List } from "antd";
 import { Paper } from "./Paper";
-
-const IconText = ({ type, text }) => (
-  <span>
-    <Icon type={type} style={{ marginRight: 8 }} />
-    {text}
-  </span>
-);
 
 const SearchResults = ({ papers, loading, addItem }) => {
   return (

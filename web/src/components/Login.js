@@ -1,9 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 import { auth } from "../actions";
-import { Button, Checkbox, Col, Form, Icon, Input, Row } from "antd";
+import { Button, Col, Form, Icon, Input, Row } from "antd";
 
 class Login extends React.Component {
   onSubmit = e => {

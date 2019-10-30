@@ -2,7 +2,6 @@ import React from "react";
 import { Badge, Card, Col, List, Row } from "antd";
 import { Author } from "../../components";
 import { connect } from "react-redux";
-import { paut } from "../../actions";
 
 const mockAuthors = [
   "John Doe",

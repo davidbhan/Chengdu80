@@ -1,5 +1,3 @@
-import axios from "axios";
-
 import * as types from "../constants/ActionTypes";
 
 export const addAuthorToLike = author => {
