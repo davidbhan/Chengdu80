@@ -1,5 +1,5 @@
 import axios from "axios";
-
+import lodash from "lodash";
 import * as types from "../constants/ActionTypes";
 
 export const getAllPapers = () => {
@@ -26,16 +26,58 @@ export const getAllPapers = () => {
   };
 };
 
+export const getAuthors = () => {
+  return (dispatch, getState) => {
+    const currentState = getState();
+
+    const mockAuthors = [
+      { name: "Jane Eik" },
+      { name: "John Doe" },
+      { name: "Jane Teen" },
+      { name: "Bob Chaar" }
+    ];
+
+    return dispatch({
+      type: types.GET_AUTHORS,
+      payload: {
+        authors: lodash.differenceWith(
+          mockAuthors,
+          currentState.paut.authors,
+          lodash.isEqual
+        )
+      }
+    });
+  };
+};
+
+export const getTopics = () => {
+  return (dispatch, getState) => {
+    const currentState = getState();
+    const mockTopics = [
+      "Artificial Intelligence",
+      "Computational & Synthetic Biology",
+      "Computer Architecture",
+      "Computer Graphics, Vision, Animation, and Game Science",
+      "Computing for Development",
+      "Data Science",
+      "Data Management and Visualization",
+      "Human Computer Interaction"
+    ];
+    return dispatch({
+      type: types.GET_TOPICS,
+      payload: {
+        topics: lodash.difference(mockTopics, currentState.paut.topics)
+      }
+    });
+  };
+};
+
 export const getSearchPapers = searchQuery => {
   return dispatch => {
     dispatch({
       type: types.GET_PAPERS,
       payload: { papers: [], loading: true }
     });
-
-    // const searchQueries = searchQuery.split(" ").map(term => "?search=" + term);
-    // const elasticQuery = searchQueries.join("&");
-
     return axios
       .get("/api/papers/?search=" + searchQuery)
       .then(res => {

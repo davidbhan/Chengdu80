@@ -1,34 +1,43 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Badge, Card, Col, List, Row } from "antd";
 import { Topic } from "./Topic";
 import { connect } from "react-redux";
-
-const mockTopics = [
-  "Artificial Intelligence",
-  "Malware Detection",
-  "Cryptography",
-  "Artificial Intelligence",
-  "Malware Detection",
-  "Cryptography",
-  "Artificial Intelligence"
-];
+import { papers } from "../../actions";
 
 const mapStateToProps = state => {
   return {
-    topics: state.paut.topics
+    topics: state.papers.topics,
+    topicsSelected: state.paut.topics
   };
 };
 
-export const Topics = connect(mapStateToProps)(({ topics }) => (
-  <Card>
-    <Row type={"flex"} justify={"space-between"}>
-      <Col>
-        <h3>Topics</h3>
-      </Col>
-      <Col>
-        <Badge count={topics.length} showZero />
-      </Col>
-    </Row>
-    <List dataSource={mockTopics} renderItem={item => <Topic topic={item} />} />
-  </Card>
-));
+const mapDispatchToProps = dispatch => {
+  return {
+    getTopics: () => {
+      dispatch(papers.getTopics());
+    }
+  };
+};
+
+export const Topics = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(({ topics, topicsSelected, getTopics }) => {
+  useEffect(() => {
+    getTopics();
+  });
+
+  return (
+    <Card>
+      <Row type={"flex"} justify={"space-between"}>
+        <Col>
+          <h3>Topics</h3>
+        </Col>
+        <Col>
+          <Badge count={topicsSelected.length} showZero />
+        </Col>
+      </Row>
+      <List dataSource={topics} renderItem={item => <Topic topic={item} />} />
+    </Card>
+  );
+});

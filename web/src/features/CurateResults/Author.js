@@ -1,7 +1,7 @@
 import React from "react";
 import { Avatar, Icon, List } from "antd";
 import { connect } from "react-redux";
-import { paut } from "../../actions";
+import { paut, papers } from "../../actions";
 
 const mapStateToProps = state => {
   return {
@@ -13,6 +13,7 @@ const mapDispatchToProps = dispatch => {
   return {
     likeAuthor: author => {
       dispatch(paut.addAuthorToLike(author));
+      dispatch(papers.getAuthors());
     }
   };
 };
@@ -20,13 +21,16 @@ const mapDispatchToProps = dispatch => {
 export const Author = connect(
   mapStateToProps,
   mapDispatchToProps
-)(({ name, color, likeAuthor, authors }) => {
+)(({ author, likeAuthor }) => {
   return (
     <List.Item
-      key={name}
-      actions={[<Icon onClick={() => likeAuthor(name)} type="like" />]}
+      key={author.name}
+      actions={[<Icon onClick={() => likeAuthor(author)} type="like" />]}
     >
-      <List.Item.Meta title={<p>{name}</p>} avatar={<Avatar icon="user" />} />
+      <List.Item.Meta
+        title={<p>{author.name}</p>}
+        avatar={<Avatar icon="user" />}
+      />
     </List.Item>
   );
 });
