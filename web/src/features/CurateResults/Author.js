@@ -2,6 +2,7 @@ import React from "react";
 import { Avatar, Icon, List } from "antd";
 import { connect } from "react-redux";
 import { paut, papers } from "../../actions";
+import * as selection from "../../actions/selection";
 
 const mapStateToProps = state => {
   return {
@@ -14,6 +15,9 @@ const mapDispatchToProps = dispatch => {
     likeAuthor: author => {
       dispatch(paut.addAuthorToLike(author));
       dispatch(papers.getAuthors());
+    },
+    selectAuthor: author => {
+      dispatch(selection.renderAuthor(author));
     }
   };
 };
@@ -21,9 +25,10 @@ const mapDispatchToProps = dispatch => {
 export const Author = connect(
   mapStateToProps,
   mapDispatchToProps
-)(({ author, likeAuthor }) => {
+)(({ author, likeAuthor, selectAuthor }) => {
   return (
     <List.Item
+      onClick={() => selectAuthor(author)}
       key={author.name}
       actions={[<Icon onClick={() => likeAuthor(author)} type="like" />]}
     >

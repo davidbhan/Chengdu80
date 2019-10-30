@@ -71,6 +71,7 @@ export const getSearchPapers = searchQuery => {
           papers{
           title
           authors {
+            id
             name
           }
           topics {
