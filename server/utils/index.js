@@ -1,1 +1,1 @@
-export { processPaperSource } from "./papers";
+export { processPaperSource, authorPaperLoader } from "./papers";
