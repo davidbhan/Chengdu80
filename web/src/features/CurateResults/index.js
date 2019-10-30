@@ -6,6 +6,7 @@ import { Authors } from "./Authors";
 import { Topics } from "./Topics";
 
 import SearchResults from "./SearchResults";
+import { Author } from "../Preview/Author";
 
 class Search extends React.Component {
   componentDidMount() {
@@ -16,7 +17,8 @@ class Search extends React.Component {
   render() {
     const {
       papers: { papers },
-      loading
+      loading,
+      previewType
     } = this.props;
     return (
       <>
@@ -34,11 +36,7 @@ class Search extends React.Component {
               <SearchResults papers={papers} loading={loading} />
             </Col>
           </Col>
-          <Col span={8}>
-            <div style={{ backgroundColor: "grey", height: "100%" }}>
-              Preview Window
-            </div>
-          </Col>
+          <Col span={8}>{previewType === "AUTHOR" ? <Author /> : null}</Col>
         </Row>
       </>
     );
@@ -48,7 +46,8 @@ class Search extends React.Component {
 const mapStateToProps = state => {
   return {
     papers: state.papers,
-    loading: state.papers.loading
+    loading: state.papers.loading,
+    previewType: state.selection.type
   };
 };
 
