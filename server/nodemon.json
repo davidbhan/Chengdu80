@@ -1,0 +1,6 @@
+{
+  "watch": ["./"],
+  "ignore": ["node_modules"],
+  "ext": "js,json",
+  "exec": "babel-node -- index.js"
+}
