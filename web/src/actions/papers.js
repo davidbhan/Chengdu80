@@ -37,7 +37,7 @@ export const getSearchPapers = searchQuery => {
     const elasticQuery = searchQueries.join("&");
 
     return axios
-      .get("/api/papers/" + elasticQuery)
+      .get("/api/papers/?search=" + searchQuery)
       .then(res => {
         const papers = res.data;
         return dispatch({
