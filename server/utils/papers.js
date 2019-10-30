@@ -1,4 +1,5 @@
 import DataLoader from "dataloader";
+import { processAuthorSource } from "./authors";
 
 export const processPaperSource = ({
   title,
@@ -12,10 +13,7 @@ export const processPaperSource = ({
   title,
   abstract,
   topics: fields_of_study.map(name => ({ name })),
-  authors: author_list.map(({ author_id, author_name }) => ({
-    id: author_id,
-    name: author_name
-  })),
+  authors: author_list.map(_source => processAuthorSource(_source)),
   publishedDate: venue_published_date
 });
 

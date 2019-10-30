@@ -34,6 +34,13 @@ export const ElasticSearchClient = () => {
           index: "cleanpapers",
           body: { ...elasticSearchSchema, ...body }
         })
+        .then(response => response["hits"]["hits"]),
+    authors: (body = {}) =>
+      client
+        .search({
+          index: "cleanfaculty",
+          body: { ...elasticSearchSchema, ...body }
+        })
         .then(response => response["hits"]["hits"])
   };
 };

@@ -30,7 +30,8 @@ export const typeDefs = gql`
   }
 
   type Query {
-    allPapers: [Paper]
     search(query: String): Result
+    paper(id: ID!): Paper
+    author(id: ID!): Author
   }
 `;

@@ -1,8 +1,9 @@
-import { allAuthors } from "./author";
-import { allPapers } from "./paper";
+import { paper } from "./paper";
+import { author } from "./author";
 import { search } from "./search";
 
 export const Query = {
-  allPapers,
+  paper,
+  author,
   search
 };
