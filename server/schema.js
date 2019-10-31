@@ -35,6 +35,11 @@ export const typeDefs = gql`
     topics: [Topic]
   }
 
+  type TopicCitationByYear {
+    year: String
+    citations: Int
+  }
+
   type Query {
     search(
       query: String
@@ -45,5 +50,6 @@ export const typeDefs = gql`
     paper(id: ID!): Paper
     author(id: ID!): Author
     topic(name: String!): Topic
+    topicAggregateCitations(topic: String): [TopicCitationByYear]
   }
 `;

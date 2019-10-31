@@ -49,3 +49,10 @@ export const GET_SEARCH = (paperIds, authorIds, topics, searchQuery) => `query {
       ${PAPERS_QUERY}
     }
   }`;
+
+export const GET_TOPIC_TREND = topic => `query{
+      topicAggregateCitations(topic:"${topic}"){
+            year
+            citations
+      }
+}`;

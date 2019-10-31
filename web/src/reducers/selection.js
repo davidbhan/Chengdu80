@@ -4,7 +4,9 @@ const initialState = {
   type: "",
   value: "",
   authorNetwork: {},
-  authorNetworkLoading: false
+  authorNetworkLoading: false,
+  topicTrends: [],
+  topicTrendsLoading: false
 };
 
 export const selection = (state = initialState, action) => {
@@ -32,6 +34,12 @@ export const selection = (state = initialState, action) => {
         ...state,
         authorNetwork: action.payload.value,
         authorNetworkLoading: action.payload.loading
+      };
+    case types.GET_TOPIC_TRENDS:
+      return {
+        ...state,
+        topicTrends: action.payload.data,
+        topicTrendsLoading: action.payload.loading
       };
     default:
       return state;

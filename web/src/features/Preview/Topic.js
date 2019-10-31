@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { Card, List, Row } from "antd";
 import { Typography } from "antd";
 import { Paper } from "../CurateResults/Paper";
 import styled from "styled-components";
+import { selection } from "../../actions";
+import { Area, AreaChart, XAxis, YAxis } from "recharts";
 
 const mapStateToProps = state => {
   return {
-    topic: state.selection.value
+    topic: state.selection.value,
+    topicTrends: state.selection.topicTrends
   };
 };
 
@@ -22,7 +25,7 @@ const PaddedRow = styled(Row)`
 export const Topic = connect(
   mapStateToProps,
   mapDispatchToProps
-)(({ topic }) => {
+)(({ topic, topicTrends }) => {
   return (
     <Card>
       <Typography.Title>{topic.name}</Typography.Title>
@@ -39,6 +42,26 @@ export const Topic = connect(
           dataSource={topic.papers}
           renderItem={item => <Paper item={item} />}
         />
+      </PaddedRow>
+      <PaddedRow>
+        <AreaChart width={400} height={250} data={topicTrends}>
+          <defs>
+            <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="5%" stopColor="#8884d8" stopOpacity={0.8} />
+              <stop offset="95%" stopColor="#8884d8" stopOpacity={0} />
+            </linearGradient>
+          </defs>
+
+          <XAxis dataKey="year" />
+          <YAxis />
+          <Area
+            type="monotone"
+            dataKey="citations"
+            stroke="#8884d8"
+            fillOpacity={1}
+            fill="url(#colorUv)"
+          />
+        </AreaChart>
       </PaddedRow>
     </Card>
   );

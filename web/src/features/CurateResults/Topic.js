@@ -1,9 +1,8 @@
 import { connect } from "react-redux";
 import { Icon, List } from "antd";
 import React from "react";
-import { papers, paut } from "../../actions";
+import { papers, paut, selection } from "../../actions";
 import { ClickableListItem } from "./Author";
-import * as selection from "../../actions/selection";
 
 const mapStateToProps = state => {
   return {
@@ -19,6 +18,9 @@ const mapDispatchToProps = dispatch => {
     selectTopic: topic => {
       dispatch(selection.renderTopic(topic));
     },
+    renderTopicTrends: topic => {
+      dispatch(selection.renderTopicTrends(topic));
+    },
     redoSearch: () => {
       dispatch(papers.getSearchPapers());
     }
@@ -28,12 +30,13 @@ const mapDispatchToProps = dispatch => {
 export const Topic = connect(
   mapStateToProps,
   mapDispatchToProps
-)(({ topic, likeTopic, selectTopic, redoSearch }) => {
+)(({ topic, likeTopic, selectTopic, renderTopicTrends, redoSearch }) => {
   return (
     <ClickableListItem
       key={topic}
       onClick={() => {
         selectTopic(topic);
+        renderTopicTrends(topic);
       }}
       actions={[
         <Icon

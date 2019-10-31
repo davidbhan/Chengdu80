@@ -34,7 +34,18 @@ export const ElasticSearchClient = () => {
           index: "relevantpapers",
           body: { ...elasticSearchSchema, ...body }
         })
-        .then(response => response["hits"]["hits"]),
+        .then(response => {
+          return response["hits"]["hits"];
+        }),
+    papersaggs: (body = {}) =>
+      client
+        .search({
+          index: "relevantpapers",
+          body: { ...body }
+        })
+        .then(response => {
+          return response["aggregations"];
+        }),
     authors: (body = {}) =>
       client
         .search({

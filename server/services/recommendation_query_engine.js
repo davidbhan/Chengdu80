@@ -76,7 +76,8 @@ function generate_elastic_query(original_keyword, sorted_weights) {
         query: {
           multi_match: {
             query: original_keyword,
-            fields: ["abstract", "fields_of_study^2", "title^3"]
+            fields: ["abstract", "fields_of_study^2", "title^3"],
+            fuzziness: "AUTO"
           }
         },
         functions: custom_keywords
