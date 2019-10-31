@@ -31,7 +31,7 @@ export const ElasticSearchClient = () => {
     papers: (body = {}) =>
       client
         .search({
-          index: "cleanpapers",
+          index: "relevantpapers",
           body: { ...elasticSearchSchema, ...body }
         })
         .then(response => response["hits"]["hits"]),
