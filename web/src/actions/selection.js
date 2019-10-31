@@ -4,6 +4,13 @@ import { GET_AUTHOR, GET_TOPIC, GET_TOPIC_TREND, GET_AUTHOR_NETWORK } from "./qu
 
 export const renderAuthor = author => {
   return (dispatch, getState) => {
+    dispatch({
+      type: types.SELECT_AUTHOR,
+      payload: {
+        value: null,
+        loading: true
+      }
+    });
     axios
       .post("/graphql", {
         query: GET_AUTHOR(author.id)
@@ -14,8 +21,7 @@ export const renderAuthor = author => {
           payload: {
             value: {
               ...res.data.data.author,
-              id: author.id,
-              name: author.name
+              loading: false
             }
           }
         });

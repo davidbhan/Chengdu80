@@ -1,3 +1,3 @@
 export { processPaperSource, authorPapersLoader } from "./papers";
-export { processAuthorSource } from "./authors";
+export { processAuthorSource, authorsLoader } from "./authors";
 export { fieldPapersLoader } from "./fields";

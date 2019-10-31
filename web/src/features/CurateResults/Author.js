@@ -58,7 +58,9 @@ export const Author = connect(
         style={{ padding: 0 }}
         title={author.name}
         description={truncate(author.institution.name, { length: 18 })}
-        avatar={<Avatar icon="user" />}
+        avatar={
+          author.image ? <Avatar src={author.image} /> : <Avatar icon="user" />
+        }
       />
     </ClickableListItem>
   );

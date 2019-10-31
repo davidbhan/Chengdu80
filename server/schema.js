@@ -17,6 +17,7 @@ export const typeDefs = gql`
     institution: Institution
     interests: [String]
     papers: [Paper]
+    image: String
   }
 
   type Paper {

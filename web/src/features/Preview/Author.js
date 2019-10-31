@@ -33,17 +33,23 @@ export const Author = connect(
 )(({ author, authorNetwork, authorNetworkLoading }) => {
   return (
     <Card>
-      <Row>
-        <Col span={6}>
-          <Avatar size={64} icon="user" />
-        </Col>
-        <Col>
-          <Typography.Title style={{ fontSize: 24 }}>
-            {author.name}
-          </Typography.Title>
-        </Col>
-      </Row>
-      {author.institution.name && (
+      {author && (
+        <Row>
+          <Col span={6}>
+            {author.image ? (
+              <Avatar size={64} src={author.image} />
+            ) : (
+              <Avatar size={64} icon="user" />
+            )}
+          </Col>
+          <Col>
+            <Typography.Title style={{ fontSize: 24 }}>
+              {author.name}
+            </Typography.Title>
+          </Col>
+        </Row>
+      )}
+      {author && author.institution.name && (
         <PaddedRow>
           <Icon type="bank" />
           <PaddedText key={author.institution.id} code>
@@ -51,20 +57,22 @@ export const Author = connect(
           </PaddedText>
         </PaddedRow>
       )}
-      <PaddedRow>
-        <List
-          itemLayout="vertical"
-          size="small"
-          pagination={{
-            onChange: page => {
-              console.log(page);
-            },
-            pageSize: 2
-          }}
-          dataSource={author.papers}
-          renderItem={item => <Paper item={item} />}
-        />
-      </PaddedRow>
+      {author && (
+        <PaddedRow>
+          <List
+            itemLayout="vertical"
+            size="small"
+            pagination={{
+              onChange: page => {
+                console.log(page);
+              },
+              pageSize: 2
+            }}
+            dataSource={author.papers}
+            renderItem={item => <Paper item={item} />}
+          />
+        </PaddedRow>
+      )}
       {authorNetworkLoading && <Spin />}
       {authorNetwork.papers && <NetworkGraph authorData={authorNetwork} />}
     </Card>
