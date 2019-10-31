@@ -38,7 +38,6 @@ export const Paper = connect(
   mapStateToProps,
   mapDispatchToProps
 )(({ item, likePaper, previewPaper }) => {
-  console.log(item);
   return (
     <List.Item
       key={item.title}
@@ -46,10 +45,13 @@ export const Paper = connect(
         previewPaper(item);
       }}
       actions={[
+        <Icon onClick={() => likePaper(item)} type="like" />,
         <IconText
           type="user"
           text={map(item.authors, val => (
-            <PaddedText>{val.name}</PaddedText>
+            <PaddedText>
+              {val.name.split(" ")[val.name.split(" ").length - 1]}
+            </PaddedText>
           ))}
         />,
         <IconText
@@ -58,7 +60,7 @@ export const Paper = connect(
         />
       ]}
     >
-      <List.Item.Meta title={<a href={item.href}>{item.title}</a>} />
+      <List.Item.Meta description={<a href={item.href}>{item.title}</a>} />
     </List.Item>
   );
 });
