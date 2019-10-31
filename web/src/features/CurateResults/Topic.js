@@ -34,9 +34,16 @@ export const Topic = connect(
       key={topic}
       onClick={() => {
         selectTopic(topic);
-        redoSearch();
       }}
-      actions={[<Icon onClick={() => likeTopic(topic)} type="like" />]}
+      actions={[
+        <Icon
+          onClick={() => {
+            likeTopic(topic);
+            redoSearch();
+          }}
+          type="like"
+        />
+      ]}
     >
       <List.Item.Meta style={{ padding: 0 }} key={topic} title={topic} />
     </ClickableListItem>
