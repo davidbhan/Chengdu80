@@ -29,27 +29,33 @@ function generate_weights_datastructure(data) {
   });
 
   data.authors.forEach(author => {
-    author.expertise.forEach(area => {
-      if (weights.expertise.hasOwnProperty(area)) {
-        weights.expertise[area] += 1;
-      } else {
-        weights.expertise[area] = 1;
-      }
-    });
-    author.custom_keywords.forEach(key => {
-      if (weights.unified_keywords.hasOwnProperty(key)) {
-        weights.unified_keywords[key] += 1;
-      } else {
-        weights.unified_keywords[key] = 1;
-      }
-    });
-    author.fields_of_study.forEach(key => {
-      if (weights.unified_keywords.hasOwnProperty(key)) {
-        weights.unified_keywords[key] += 1;
-      } else {
-        weights.unified_keywords[key] = 1;
-      }
-    });
+    author &&
+      author.expertise &&
+      author.expertise.forEach(area => {
+        if (weights.expertise.hasOwnProperty(area)) {
+          weights.expertise[area] += 1;
+        } else {
+          weights.expertise[area] = 1;
+        }
+      });
+    author &&
+      author.custom_keywords &&
+      author.custom_keywords.forEach(key => {
+        if (weights.unified_keywords.hasOwnProperty(key)) {
+          weights.unified_keywords[key] += 1;
+        } else {
+          weights.unified_keywords[key] = 1;
+        }
+      });
+    author &&
+      author.fields_of_study &&
+      author.fields_of_study.forEach(key => {
+        if (weights.unified_keywords.hasOwnProperty(key)) {
+          weights.unified_keywords[key] += 1;
+        } else {
+          weights.unified_keywords[key] = 1;
+        }
+      });
   });
 
   data.unified_keywords.forEach(key => {

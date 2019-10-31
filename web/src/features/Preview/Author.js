@@ -5,6 +5,7 @@ import { Typography } from "antd";
 import { Paper } from "../CurateResults/Paper";
 import styled from "styled-components";
 import { NetworkGraph } from "../../components";
+import { uniq } from "lodash";
 
 const mapStateToProps = state => {
   return {
@@ -47,14 +48,42 @@ export const Author = connect(
           </Col>
         </Row>
       )}
-      {author && author.institution && author.institution.name && (
+      {author && author.institution && author.institution.name ? (
         <PaddedRow>
           <Icon type="bank" />
           <PaddedText key={author.institution.id} code>
             {author.institution.name}
           </PaddedText>
         </PaddedRow>
-      )}
+      ) : null}
+      {author && author.prestigeScore ? (
+        <PaddedRow>
+          <Icon type="area-chart" />
+          <PaddedText code>{author.prestigeScore} points</PaddedText>
+        </PaddedRow>
+      ) : null}
+      {author && author.citationCount ? (
+        <PaddedRow>
+          <Icon type="number" />
+          <PaddedText code>Cited {author.citationCount} times</PaddedText>
+        </PaddedRow>
+      ) : null}
+      {author && author.papers ? (
+        <PaddedRow>
+          <Icon type="solution" />
+          <PaddedText code>{author.papers.length} research papers</PaddedText>
+        </PaddedRow>
+      ) : null}
+      {author && author.interests ? (
+        <PaddedRow>
+          <Icon type="solution" />
+          {uniq(author.interests).map(val => (
+            <PaddedText key={val} code>
+              {val}
+            </PaddedText>
+          ))}
+        </PaddedRow>
+      ) : null}
       {author && (
         <PaddedRow>
           <List

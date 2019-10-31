@@ -12,6 +12,7 @@ export const GET_AUTHOR = id => `
       }
       prestigeScore
       citationCount
+      interests
       ${PAPERS_QUERY}
     }
   }
@@ -66,6 +67,7 @@ export const GET_SEARCH = (paperIds, authorIds, topics, searchQuery) => `query {
         }
         prestigeScore
         citationCount
+        interests
       }
     }
   }`;

@@ -17,7 +17,6 @@ class Search extends React.Component {
 
   render() {
     const { papers, loading, previewType, search_query } = this.props;
-    console.log(sessionStorage.getItem("query"));
     if (sessionStorage.getItem("query") === null) {
       return <Redirect to={"/"} />;
     }
