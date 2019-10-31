@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useLayoutEffect, useRef, useState } from "react";
 import { Graph } from "react-d3-graph";
 import { uniqBy, flatten } from "lodash";
+import { Row } from "antd";
 
 const myConfig = {
   nodeHighlightBehavior: true,
@@ -72,19 +73,21 @@ export const NetworkGraph = ({ authorData }) => {
   );
 
   return (
-    <Graph
-      id="author-network"
-      data={{
-        nodes: [
-          ...nodes,
-          {
-            ...nodes.find(item => item.id === authorData.id),
-            color: "red"
-          }
-        ],
-        links
-      }}
-      config={myConfig}
-    />
+    <Row type={"flex"} justify={"center"} align={"middle"}>
+      <Graph
+        id="author-network"
+        data={{
+          nodes: [
+            ...nodes,
+            {
+              ...nodes.find(item => item.id === authorData.id),
+              color: "red"
+            }
+          ],
+          links
+        }}
+        config={myConfig}
+      />
+    </Row>
   );
 };
