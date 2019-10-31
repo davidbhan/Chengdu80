@@ -13,7 +13,7 @@ const myConfig = {
     highlightColor: "lightblue"
   },
   height: 300,
-  width: 300
+  width: 350
 };
 
 export const NetworkGraph = ({ authorData }) => {

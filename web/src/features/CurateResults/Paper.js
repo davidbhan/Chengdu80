@@ -30,7 +30,7 @@ const mapDispatchToProps = dispatch => {
 export const Paper = connect(
   mapStateToProps,
   mapDispatchToProps
-)(({ item, color, likePaper, previewPaper, papers }) => {
+)(({ item, likePaper, previewPaper }) => {
   return (
     <List.Item
       key={item.title}

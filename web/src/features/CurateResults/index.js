@@ -16,11 +16,7 @@ class Search extends React.Component {
   }
 
   render() {
-    const {
-      papers: { papers },
-      loading,
-      previewType
-    } = this.props;
+    const { papers, loading, previewType } = this.props;
     return (
       <>
         <Row type={"flex"} justify={"center"} gutter={16}>
@@ -49,7 +45,7 @@ class Search extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    papers: state.papers,
+    papers: state.papers.papers,
     loading: state.papers.loading,
     previewType: state.selection.type
   };

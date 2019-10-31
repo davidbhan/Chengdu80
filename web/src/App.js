@@ -13,7 +13,6 @@ import NotFound from "./components/NotFound";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 import Search from "./components/Search";
-import Visualisations from "./components/Visualisations";
 import { CurateResults } from "./features";
 
 let store = createStore(ponyApp, composeWithDevTools(applyMiddleware(thunk)));
@@ -46,7 +45,6 @@ class RootContainerComponent extends React.Component {
         <Switch>
           <Route exact path="/" component={Search} />
           <Route exact path={"/curate"} component={CurateResults} />
-          <Route exact path={"/visualize"} component={Visualisations} />
           <Route component={NotFound} />
         </Switch>
       </AppBar>

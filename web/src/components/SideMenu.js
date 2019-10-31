@@ -24,7 +24,6 @@ class SideMenu extends React.Component {
   };
 
   onCollapse = collapsed => {
-    console.log(collapsed);
     this.setState({ collapsed });
   };
 
@@ -72,12 +71,6 @@ class SideMenu extends React.Component {
               <Link to={"/"}>
                 <Icon type="search" />
                 <span>Search</span>
-              </Link>
-            </Menu.Item>
-            <Menu.Item key="visualize">
-              <Link to={"/visualize"}>
-                <Icon type="line-chart" />
-                <span>Visualize</span>
               </Link>
             </Menu.Item>
           </Menu>
