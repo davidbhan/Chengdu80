@@ -24,6 +24,34 @@ export const renderAuthor = author => {
   };
 };
 
+export const renderAuthorNetwork = author => {
+  return (dispatch, getState) => {
+    dispatch({
+      type: types.GET_AUTHOR_NETWORK,
+      payload: {
+        value: {},
+        loading: true
+      }
+    });
+    axios
+      .post("/graphql", {
+        query: GET_AUTHOR(author.id)
+      })
+      .then(res => {
+        console.log(res.data.data);
+        console.log(res.data.data.author);
+        dispatch({
+          type: types.GET_AUTHOR_NETWORK,
+          payload: {
+            value: res.data.data.author,
+            loading: false
+          }
+        });
+      })
+      .catch(err => console.log(err));
+  };
+};
+
 export const renderPaper = paper => {
   return (dispatch, getState) => {
     dispatch({ type: types.SELECT_PAPER, payload: { value: paper } });

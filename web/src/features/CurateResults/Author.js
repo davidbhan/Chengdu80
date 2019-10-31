@@ -28,6 +28,7 @@ const mapDispatchToProps = dispatch => {
     },
     selectAuthor: author => {
       dispatch(selection.renderAuthor(author));
+      dispatch(selection.renderAuthorNetwork(author));
     },
     redoSearch: () => {
       dispatch(papers.getSearchPapers());

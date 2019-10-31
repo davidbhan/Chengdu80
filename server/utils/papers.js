@@ -21,6 +21,7 @@ export const processPaperSource = ({
 
 const findAuthorPapers = (ElasticSearch, author_ids) => {
   return ElasticSearch.papers({
+    size: 5 * author_ids.length,
     query: {
       bool: {
         should: author_ids.map(id => ({

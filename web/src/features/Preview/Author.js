@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Avatar, Card, Col, List, Row } from "antd";
+import { Avatar, Card, Col, List, Row, Spin, Icon } from "antd";
 import { Typography } from "antd";
 import { Paper } from "../CurateResults/Paper";
 import styled from "styled-components";
@@ -8,7 +8,9 @@ import { NetworkGraph } from "../../components";
 
 const mapStateToProps = state => {
   return {
-    author: state.selection.value
+    author: state.selection.value,
+    authorNetwork: state.selection.authorNetwork,
+    authorNetworkLoading: state.selection.authorNetworkLoading
   };
 };
 
@@ -20,11 +22,15 @@ const PaddedRow = styled(Row)`
   margin-top: 20px;
 `;
 
+const PaddedText = styled(Typography.Text)`
+  margin-left: 5px;
+  display: inline-table;
+`;
+
 export const Author = connect(
   mapStateToProps,
   mapDispatchToProps
-)(({ author }) => {
-  console.log(author);
+)(({ author, authorNetwork, authorNetworkLoading }) => {
   return (
     <Card>
       <Row>
@@ -37,6 +43,14 @@ export const Author = connect(
           </Typography.Title>
         </Col>
       </Row>
+      {author.institution.name && (
+        <PaddedRow>
+          <Icon type="bank" />
+          <PaddedText key={author.institution.id} code>
+            {author.institution.name}
+          </PaddedText>
+        </PaddedRow>
+      )}
       <PaddedRow>
         <List
           itemLayout="vertical"
@@ -51,7 +65,8 @@ export const Author = connect(
           renderItem={item => <Paper item={item} />}
         />
       </PaddedRow>
-      <NetworkGraph authorData={author} />
+      {authorNetworkLoading && <Spin />}
+      {authorNetwork.papers && <NetworkGraph authorData={authorNetwork} />}
     </Card>
   );
 });

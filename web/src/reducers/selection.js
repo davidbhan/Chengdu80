@@ -2,7 +2,9 @@ import * as types from "../constants/ActionTypes";
 
 const initialState = {
   type: "",
-  value: ""
+  value: "",
+  authorNetwork: {},
+  authorNetworkLoading: false
 };
 
 export const selection = (state = initialState, action) => {
@@ -24,6 +26,12 @@ export const selection = (state = initialState, action) => {
         ...state,
         type: "TOPIC",
         value: action.payload.value
+      };
+    case types.GET_AUTHOR_NETWORK:
+      return {
+        ...state,
+        authorNetwork: action.payload.value,
+        authorNetworkLoading: action.payload.loading
       };
     default:
       return state;
