@@ -6,7 +6,6 @@ const initialState = {
 };
 
 export const selection = (state = initialState, action) => {
-  console.log(action);
   switch (action.type) {
     case types.SELECT_AUTHOR:
       return {

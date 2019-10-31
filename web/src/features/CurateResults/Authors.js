@@ -7,7 +7,8 @@ import { papers } from "../../actions";
 const mapStateToProps = state => {
   return {
     authors: state.papers.authors,
-    authorsSelected: state.paut.authors
+    authorsSelected: state.paut.authors,
+    loading: state.papers.loading
   };
 };
 
@@ -22,10 +23,10 @@ const mapDispatchToProps = dispatch => {
 export const Authors = connect(
   mapStateToProps,
   mapDispatchToProps
-)(({ authors, authorsSelected, getAuthors }) => {
+)(({ authors, authorsSelected, getAuthors, loading }) => {
   useEffect(() => {
     getAuthors();
-  }, []);
+  }, [loading]);
 
   return (
     <Card>

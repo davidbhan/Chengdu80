@@ -1,5 +1,5 @@
 import axios from "axios";
-import lodash, { map } from "lodash";
+import lodash, { map, join } from "lodash";
 import * as types from "../constants/ActionTypes";
 
 export const getAllPapers = () => {
@@ -29,14 +29,16 @@ export const getAllPapers = () => {
 export const getAuthors = () => {
   return (dispatch, getState) => {
     const currentState = getState();
-
     return dispatch({
       type: types.GET_AUTHORS,
       payload: {
-        authors: lodash.differenceWith(
-          currentState.papers.authors,
-          currentState.paut.authors,
-          lodash.isEqual
+        authors: lodash.take(
+          lodash.differenceWith(
+            currentState.papers.authors,
+            currentState.paut.authors,
+            lodash.isEqual
+          ),
+          5
         )
       }
     });
@@ -49,9 +51,12 @@ export const getTopics = () => {
     return dispatch({
       type: types.GET_TOPICS,
       payload: {
-        topics: lodash.difference(
-          currentState.papers.topics,
-          currentState.paut.topics
+        topics: lodash.take(
+          lodash.difference(
+            currentState.papers.topics,
+            currentState.paut.topics
+          ),
+          5
         )
       }
     });
@@ -65,9 +70,7 @@ export const getSearchPapers = () => {
 
     const authorIds = map(map(current_basket.authors, "id"), lodash.toString);
     const paperIds = map(current_basket.papers, "id");
-    const topics = current_basket.topics;
-
-    console.log(paperIds, authorIds, topics, searchQuery);
+    const topics = join(current_basket.topics, `","`);
 
     dispatch({
       type: types.GET_PAPERS,
@@ -76,7 +79,7 @@ export const getSearchPapers = () => {
     return axios
       .post("/graphql", {
         query: `query {
-          search(query: "${searchQuery}", paperIds: [${paperIds}], authorIds: [${authorIds}], topics: [${topics}]){
+          search(query: "${searchQuery}", paperIds: [${paperIds}], authorIds: [${authorIds}], topics: ["${topics}"]){
             papers {
               id
               title
@@ -100,22 +103,15 @@ export const getSearchPapers = () => {
       })
       .then(res => {
         const papers = res.data.data.search.papers;
-        console.log(papers);
-        const authors = lodash.take(
-          lodash.uniqWith(
-            lodash.flatten(papers.map(({ authors }) => authors[0])),
-            lodash.isEqual
-          ),
-          5
+        const authors = lodash.uniqWith(
+          lodash.flatten(papers.map(({ authors }) => authors[0])),
+          lodash.isEqual
         );
-        const topics = lodash.take(
-          lodash.uniq(
-            lodash.map(
-              lodash.flatten(papers.map(({ topics }) => topics[0])),
-              "name"
-            )
-          ),
-          5
+        const topics = lodash.uniq(
+          lodash.map(
+            lodash.flatten(papers.map(({ topics }) => topics[0])),
+            "name"
+          )
         );
         return dispatch({
           type: types.GET_PAPERS,

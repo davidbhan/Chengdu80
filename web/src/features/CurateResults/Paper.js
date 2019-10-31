@@ -43,7 +43,7 @@ export const Paper = connect(
         <IconText
           type="user"
           text={item.authors.map((val, index) => (
-            <Typography.Text>
+            <Typography.Text key={val.name}>
               {val.name.split(" ")[val.name.split(" ").length - 1]}
               {index < item.authors.length - 1 && (
                 <span style={{ color: "#e8e8e8" }}> - </span>

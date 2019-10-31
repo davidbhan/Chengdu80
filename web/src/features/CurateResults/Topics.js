@@ -7,7 +7,8 @@ import { papers } from "../../actions";
 const mapStateToProps = state => {
   return {
     topics: state.papers.topics,
-    topicsSelected: state.paut.topics
+    topicsSelected: state.paut.topics,
+    loading: state.papers.loading
   };
 };
 
@@ -22,10 +23,10 @@ const mapDispatchToProps = dispatch => {
 export const Topics = connect(
   mapStateToProps,
   mapDispatchToProps
-)(({ topics, topicsSelected, getTopics }) => {
+)(({ topics, topicsSelected, getTopics, loading }) => {
   useEffect(() => {
     getTopics();
-  }, []);
+  }, [loading]);
 
   return (
     <Card>
