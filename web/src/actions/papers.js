@@ -1,5 +1,5 @@
 import axios from "axios";
-import lodash from "lodash";
+import lodash, { map } from "lodash";
 import * as types from "../constants/ActionTypes";
 
 export const getAllPapers = () => {
@@ -58,8 +58,17 @@ export const getTopics = () => {
   };
 };
 
-export const getSearchPapers = searchQuery => {
-  return dispatch => {
+export const getSearchPapers = () => {
+  return (dispatch, getState) => {
+    const current_basket = getState().paut;
+    const searchQuery = getState().papers.search_query;
+
+    const authorIds = map(map(current_basket.authors, "id"), lodash.toString);
+    const paperIds = map(current_basket.papers, "id");
+    const topics = current_basket.topics;
+
+    console.log(paperIds, authorIds, topics, searchQuery);
+
     dispatch({
       type: types.GET_PAPERS,
       payload: { papers: [], loading: true }
@@ -67,7 +76,7 @@ export const getSearchPapers = searchQuery => {
     return axios
       .post("/graphql", {
         query: `query {
-          search(query: "${searchQuery}"){
+          search(query: "${searchQuery}", paperIds: [${paperIds}], authorIds: [${authorIds}], topics: [${topics}]){
             papers {
               id
               title
@@ -90,6 +99,7 @@ export const getSearchPapers = searchQuery => {
       })
       .then(res => {
         const papers = res.data.data.search.papers;
+        console.log(papers);
         const authors = lodash.take(
           lodash.uniqWith(
             lodash.flatten(papers.map(({ authors }) => authors[0])),
@@ -122,5 +132,15 @@ export const getSearchPapers = searchQuery => {
           dispatch({ type: types.AUTHENTICATION_ERROR, data: response.data });
         }
       });
+  };
+};
+
+export const setQuery = () => {
+  return dispatch => {
+    const query = localStorage.getItem("query");
+    dispatch({
+      type: types.SET_SEARCH_QUERY,
+      payload: { search_query: query }
+    });
   };
 };

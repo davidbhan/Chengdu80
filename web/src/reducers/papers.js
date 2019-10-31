@@ -4,6 +4,7 @@ const initialState = {
   papers: [],
   authors: [],
   topics: [],
+  search_query: [],
   loading: false
 };
 
@@ -26,6 +27,11 @@ export default function papers(state = initialState, action) {
       return {
         ...state,
         topics: action.payload.topics
+      };
+    case types.SET_SEARCH_QUERY:
+      return {
+        ...state,
+        search_query: action.payload.search_query
       };
     default:
       return state;

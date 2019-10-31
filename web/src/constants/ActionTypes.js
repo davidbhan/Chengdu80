@@ -24,3 +24,5 @@ export const UPDATE_BASKET = "UPDATE_BASKET";
 export const SELECT_AUTHOR = "SELECT_AUTHOR";
 export const SELECT_PAPER = "SELECT_PAPER";
 export const SELECT_TOPIC = "SELECT_TOPIC";
+
+export const SET_SEARCH_QUERY = "SET_SEARCH_QUERY";
