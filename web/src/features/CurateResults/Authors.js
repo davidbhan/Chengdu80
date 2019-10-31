@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import { Badge, Card, Col, List, Row, Icon } from "antd";
-import { Author } from "../../components";
+import { Badge, Card, Col, Icon, List, Row } from "antd";
+import { Author } from "./Author";
 import { connect } from "react-redux";
 import { papers } from "../../actions";
 
