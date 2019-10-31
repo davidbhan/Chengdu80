@@ -71,9 +71,9 @@ function generate_elastic_query(original_keyword, sorted_weights) {
     });
   sorted_weights.papers_ids &&
     sorted_weights.papers_ids.forEach(function(item, index) {
-      temp_id = { 
-          "filter": { "match": { "_id": item[0] } },
-          "weight": weights_title[index]
+      temp_id = {
+        filter: { match: { related_papers: item[0] } },
+        weight: weights_title[index]
       };
       custom_keywords.push(temp_id);
     });

@@ -24,14 +24,17 @@ export const Author = connect(
   mapStateToProps,
   mapDispatchToProps
 )(({ author }) => {
+  console.log(author);
   return (
     <Card>
-      <Row type={"flex"}>
+      <Row>
         <Col span={6}>
           <Avatar size={64} icon="user" />
         </Col>
         <Col>
-          <Typography.Title>{author.name}</Typography.Title>
+          <Typography.Title style={{ fontSize: 24 }}>
+            {author.name}
+          </Typography.Title>
         </Col>
       </Row>
       <PaddedRow>

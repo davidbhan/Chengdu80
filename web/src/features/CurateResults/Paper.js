@@ -4,6 +4,26 @@ import { connect } from "react-redux";
 import { paut, selection } from "../../actions";
 import moment from "moment";
 
+export const PAPERS_QUERY = `
+  papers {
+    id
+    title
+    abstract
+    authors {
+      id
+      name
+      institution {
+        id
+        name
+      }
+    }
+    topics {
+      name
+    }
+    keywords
+    publishedDate
+  }
+`;
 const IconText = ({ type, text, onClick }) => (
   <span>
     <Icon type={type} style={{ marginRight: 8 }} onClick={onClick} />
