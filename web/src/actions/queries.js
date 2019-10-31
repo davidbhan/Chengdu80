@@ -22,7 +22,7 @@ export const GET_TOPIC = topic => `query {
   }`;
 
 export const GET_SEARCH = (paperIds, authorIds, topics, searchQuery) => `query {
-    search(query: "${searchQuery}", paperIds: [${paperIds}], authorIds: [${authorIds}], topics: [${topics}]){
+    search(query: "${searchQuery}", paperIds: [${paperIds}], authorIds: [${authorIds}], topics: ["${topics}"]){
       ${PAPERS_QUERY}
     }
   }`;
