@@ -38,7 +38,7 @@ export const typeDefs = gql`
   type Query {
     search(
       query: String
-      paperIds: [String] = []
+      paperIds: [ID] = []
       authorIds: [ID] = []
       topics: [String] = []
     ): Result

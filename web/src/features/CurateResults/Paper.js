@@ -1,7 +1,7 @@
 import React from "react";
 import { Icon, List, Typography } from "antd";
 import { connect } from "react-redux";
-import { paut, selection } from "../../actions";
+import { papers, paut, selection } from "../../actions";
 import moment from "moment";
 
 export const PAPERS_QUERY = `
@@ -44,6 +44,9 @@ const mapDispatchToProps = dispatch => {
     },
     previewPaper: paper => {
       dispatch(selection.renderPaper(paper));
+    },
+    redoSearch: () => {
+      dispatch(papers.getSearchPapers());
     }
   };
 };
@@ -51,7 +54,7 @@ const mapDispatchToProps = dispatch => {
 export const Paper = connect(
   mapStateToProps,
   mapDispatchToProps
-)(({ item, likePaper, previewPaper }) => {
+)(({ item, likePaper, previewPaper, redoSearch }) => {
   return (
     <List.Item
       key={item.title}
@@ -59,7 +62,13 @@ export const Paper = connect(
         previewPaper(item);
       }}
       actions={[
-        <Icon onClick={() => likePaper(item)} type="like" />,
+        <Icon
+          onClick={() => {
+            likePaper(item);
+            redoSearch();
+          }}
+          type="like"
+        />,
         <IconText
           type="user"
           text={item.authors.map((val, index) => (

@@ -69,14 +69,6 @@ function generate_elastic_query(original_keyword, sorted_weights) {
       custom_keywords.push(temp_abs);
       custom_keywords.push(temp_title);
     });
-  sorted_weights.papers_ids &&
-    sorted_weights.papers_ids.forEach(function(item, index) {
-      temp_id = {
-        filter: { match: { related_papers: item[0] } },
-        weight: weights_title[index]
-      };
-      custom_keywords.push(temp_id);
-    });
 
   return {
     query: {
@@ -95,6 +87,5 @@ function generate_elastic_query(original_keyword, sorted_weights) {
 
 export const recommendationEngine = (queryString, data = []) => {
   const sorted_weights = generate_weights_datastructure(data);
-  const esQuery = generate_elastic_query(queryString, sorted_weights);
-  return esQuery;
+  return generate_elastic_query(queryString, sorted_weights);
 };

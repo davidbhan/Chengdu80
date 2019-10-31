@@ -7,6 +7,7 @@ const initialState = {
 };
 
 export const paut = (state = initialState, action) => {
+  console.log(action);
   switch (action.type) {
     case types.ADD_AUTHOR_TO_LIKE:
       return {
