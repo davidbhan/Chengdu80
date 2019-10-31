@@ -6,6 +6,7 @@ const initialState = {
 };
 
 export const selection = (state = initialState, action) => {
+  console.log(action);
   switch (action.type) {
     case types.SELECT_AUTHOR:
       return {
@@ -17,6 +18,12 @@ export const selection = (state = initialState, action) => {
       return {
         ...state,
         type: "PAPER",
+        value: action.payload.value
+      };
+    case types.SELECT_TOPIC:
+      return {
+        ...state,
+        type: "TOPIC",
         value: action.payload.value
       };
     default:

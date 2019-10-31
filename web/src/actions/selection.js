@@ -49,3 +49,45 @@ export const renderPaper = paper => {
     dispatch({ type: types.SELECT_PAPER, payload: { value: paper } });
   };
 };
+
+export const renderTopic = topic => {
+  return dispatch => {
+    axios
+      .post("/graphql", {
+        query: `query {
+          topic(name: "${topic}"){
+            name
+            papers {
+              id
+              title
+              abstract
+              authors {
+                id
+                name
+                institution{
+                  id
+                  name
+                }
+              }
+              topics {
+                name
+              }
+              publishedDate
+            }
+          }
+        }`
+      })
+      .then(res => {
+        dispatch({
+          type: types.SELECT_TOPIC,
+          payload: {
+            value: {
+              name: topic,
+              papers: res.data.data.topic.papers
+            }
+          }
+        });
+      })
+      .catch(err => console.log(err));
+  };
+};

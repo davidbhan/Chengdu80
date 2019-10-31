@@ -25,7 +25,7 @@ export const Authors = connect(
 )(({ authors, authorsSelected, getAuthors }) => {
   useEffect(() => {
     getAuthors();
-  });
+  }, []);
 
   return (
     <Card>

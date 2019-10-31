@@ -6,8 +6,7 @@ import { Authors } from "./Authors";
 import { Topics } from "./Topics";
 
 import SearchResults from "./SearchResults";
-import { Author } from "../Preview/Author";
-import { Paper } from "../Preview/Paper";
+import { Author, Paper, Topic } from "../Preview";
 
 class Search extends React.Component {
   componentDidMount() {
@@ -35,6 +34,7 @@ class Search extends React.Component {
         <Col span={8}>
           {previewType === "AUTHOR" ? <Author /> : null}
           {previewType === "PAPER" ? <Paper /> : null}
+          {previewType === "TOPIC" ? <Topic /> : null}
         </Col>
       </Row>
     );

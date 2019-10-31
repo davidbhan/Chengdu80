@@ -25,7 +25,7 @@ export const Topics = connect(
 )(({ topics, topicsSelected, getTopics }) => {
   useEffect(() => {
     getTopics();
-  });
+  }, []);
 
   return (
     <Card>

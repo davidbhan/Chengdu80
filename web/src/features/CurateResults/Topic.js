@@ -2,6 +2,8 @@ import { connect } from "react-redux";
 import { Icon, List } from "antd";
 import React from "react";
 import { paut } from "../../actions";
+import { ClickableListItem } from "./Author";
+import * as selection from "../../actions/selection";
 
 const mapStateToProps = state => {
   return {
@@ -13,6 +15,9 @@ const mapDispatchToProps = dispatch => {
   return {
     likeTopic: topic => {
       dispatch(paut.addTopicToLike(topic));
+    },
+    selectTopic: topic => {
+      dispatch(selection.renderTopic(topic));
     }
   };
 };
@@ -20,13 +25,14 @@ const mapDispatchToProps = dispatch => {
 export const Topic = connect(
   mapStateToProps,
   mapDispatchToProps
-)(({ topic, color, likeTopic, topics }) => {
+)(({ topic, likeTopic, selectTopic }) => {
   return (
-    <List.Item
+    <ClickableListItem
       key={topic}
+      onClick={() => selectTopic(topic)}
       actions={[<Icon onClick={() => likeTopic(topic)} type="like" />]}
     >
       <List.Item.Meta style={{ padding: 0 }} key={topic} title={topic} />
-    </List.Item>
+    </ClickableListItem>
   );
 });

@@ -68,24 +68,23 @@ export const getSearchPapers = searchQuery => {
       .post("/graphql", {
         query: `query {
           search(query: "${searchQuery}"){
-          papers{
-          id
-          title
-          abstract
-          authors {
-            id
-            name
-            institution{
+            papers {
               id
-              name
+              title
+              abstract
+              authors {
+                id
+                name
+                institution{
+                  id
+                  name
+                }
+              }
+              topics {
+                name
+              }
+              publishedDate
             }
-          }
-          topics {
-            name
-          }
-          publishedDate
-          
-          }
           }
         }`
       })

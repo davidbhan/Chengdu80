@@ -6,7 +6,7 @@ import { truncate } from "lodash";
 import * as selection from "../../actions/selection";
 import styled from "styled-components";
 
-const ClickableListItem = styled(List.Item)`
+export const ClickableListItem = styled(List.Item)`
   :hover {
     cursor: pointer;
     background-color: #0088cc0d;
