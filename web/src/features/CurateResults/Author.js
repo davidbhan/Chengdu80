@@ -28,6 +28,9 @@ const mapDispatchToProps = dispatch => {
     },
     selectAuthor: author => {
       dispatch(selection.renderAuthor(author));
+    },
+    redoSearch: () => {
+      dispatch(papers.getSearchPapers());
     }
   };
 };
@@ -35,12 +38,20 @@ const mapDispatchToProps = dispatch => {
 export const Author = connect(
   mapStateToProps,
   mapDispatchToProps
-)(({ author, likeAuthor, selectAuthor }) => {
+)(({ author, likeAuthor, selectAuthor, redoSearch }) => {
   return (
     <ClickableListItem
       key={author.name}
       onClick={() => selectAuthor(author)}
-      actions={[<Icon onClick={() => likeAuthor(author)} type="like" />]}
+      actions={[
+        <Icon
+          onClick={() => {
+            likeAuthor(author);
+            redoSearch();
+          }}
+          type="like"
+        />
+      ]}
     >
       <List.Item.Meta
         style={{ padding: 0 }}

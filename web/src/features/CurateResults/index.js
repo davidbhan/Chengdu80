@@ -10,8 +10,8 @@ import { Author, Paper, Topic } from "../Preview";
 
 class Search extends React.Component {
   componentDidMount() {
-    const { query } = this.props.location.state;
-    this.props.getSearchPapers(query);
+    this.props.setSearchQuery();
+    this.props.getSearchPapers();
   }
 
   render() {
@@ -55,7 +55,10 @@ const mapDispatchToProps = dispatch => {
       dispatch(papers.getAllPapers());
     },
     getSearchPapers: query => {
-      dispatch(papers.getSearchPapers(query));
+      dispatch(papers.getSearchPapers());
+    },
+    setSearchQuery: () => {
+      dispatch(papers.setQuery());
     }
   };
 };
