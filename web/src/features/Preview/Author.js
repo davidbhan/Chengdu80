@@ -34,7 +34,7 @@ export const Author = connect(
   return (
     <Card>
       {author && (
-        <Row>
+        <Row type={"flex"} align={"middle"}>
           <Col span={6}>
             {author.image ? (
               <Avatar size={64} src={author.image} />
@@ -43,9 +43,7 @@ export const Author = connect(
             )}
           </Col>
           <Col>
-            <Typography.Title style={{ fontSize: 24 }}>
-              {author.name}
-            </Typography.Title>
+            <Typography.Title level={3}>{author.name}</Typography.Title>
           </Col>
         </Row>
       )}
