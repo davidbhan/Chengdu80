@@ -5,6 +5,8 @@ import { withRouter } from "react-router-dom";
 
 const ContentContainer = styled.div`
   margin: 15px;
+  height: 100%;
+  width: 100%;
 `;
 
 class AppBar extends React.Component {
