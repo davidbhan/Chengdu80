@@ -30,7 +30,7 @@ class Search extends React.Component {
           <Col span={12}>
             <Input.Search
               onSearch={text => {
-                localStorage.setItem("query", text);
+                sessionStorage.setItem("query", text);
                 this.props.history.push("/curate", { query: text });
               }}
               size="large"

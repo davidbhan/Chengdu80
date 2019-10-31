@@ -7,6 +7,7 @@ import { Topics } from "./Topics";
 
 import SearchResults from "./SearchResults";
 import { Author, Paper, Topic } from "../Preview";
+import { Redirect } from "react-router-dom";
 
 class Search extends React.Component {
   componentDidMount() {
@@ -15,7 +16,11 @@ class Search extends React.Component {
   }
 
   render() {
-    const { papers, loading, previewType } = this.props;
+    const { papers, loading, previewType, search_query } = this.props;
+    console.log(sessionStorage.getItem("query"));
+    if (sessionStorage.getItem("query") === null) {
+      return <Redirect to={"/"} />;
+    }
     return (
       <Row type={"flex"} justify={"center"} gutter={16}>
         <Col span={6}>
@@ -45,7 +50,8 @@ const mapStateToProps = state => {
   return {
     papers: state.papers.papers,
     loading: state.papers.loading,
-    previewType: state.selection.type
+    previewType: state.selection.type,
+    search_query: state.selection.search_query
   };
 };
 

@@ -111,7 +111,7 @@ export const getSearchPapers = () => {
 
 export const setQuery = () => {
   return dispatch => {
-    const query = localStorage.getItem("query");
+    const query = sessionStorage.getItem("query");
     dispatch({
       type: types.SET_SEARCH_QUERY,
       payload: { search_query: query }
