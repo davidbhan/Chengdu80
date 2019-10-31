@@ -24,6 +24,7 @@ export const typeDefs = gql`
     title: String
     abstract: String
     topics: [Topic]
+    keywords: [String]
     authors: [Author]
     publishedDate: String
   }

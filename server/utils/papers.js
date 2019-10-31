@@ -7,12 +7,14 @@ export const processPaperSource = ({
   fields_of_study,
   author_list,
   venue: { venue_published_date },
-  paper_id
+  paper_id,
+  custom_keywords
 }) => ({
   id: paper_id,
   title,
   abstract,
   topics: fields_of_study.map(name => ({ name })),
+  keywords: custom_keywords,
   authors: author_list.map(_source => processAuthorSource(_source)),
   publishedDate: venue_published_date
 });

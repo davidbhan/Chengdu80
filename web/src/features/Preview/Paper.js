@@ -21,6 +21,7 @@ const PaddedRow = styled(Row)`
 
 const PaddedText = styled(Typography.Text)`
   margin-left: 5px;
+  display: inline-table;
 `;
 
 const authors = items => {
@@ -46,8 +47,8 @@ const authors = items => {
 
 const topics = items => {
   return map(items, topic => (
-    <PaddedText key={topic.name} code>
-      {topic.name}
+    <PaddedText key={topic} code>
+      {topic}
     </PaddedText>
   ));
 };
@@ -66,7 +67,7 @@ export const Paper = connect(
       {authors(paper.authors)}
       <PaddedRow>
         <Icon type="book" />
-        {topics(paper.topics)}
+        {topics([...paper.topics.map(topic => topic.name), ...paper.keywords])}
       </PaddedRow>
       <PaddedRow>
         <Icon type="calendar" />

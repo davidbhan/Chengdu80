@@ -3,8 +3,6 @@ import { Icon, List, Typography } from "antd";
 import { connect } from "react-redux";
 import { paut, selection } from "../../actions";
 import moment from "moment";
-import { map } from "lodash";
-import styled from "styled-components";
 
 const IconText = ({ type, text, onClick }) => (
   <span>
@@ -12,10 +10,6 @@ const IconText = ({ type, text, onClick }) => (
     {text}
   </span>
 );
-
-const PaddedText = styled(Typography.Text)`
-  margin-left: 10px;
-`;
 
 const mapStateToProps = state => {
   return {
@@ -48,15 +42,18 @@ export const Paper = connect(
         <Icon onClick={() => likePaper(item)} type="like" />,
         <IconText
           type="user"
-          text={map(item.authors, val => (
-            <PaddedText>
+          text={item.authors.map((val, index) => (
+            <Typography.Text>
               {val.name.split(" ")[val.name.split(" ").length - 1]}
-            </PaddedText>
+              {index < item.authors.length - 1 && (
+                <span style={{ color: "#e8e8e8" }}> - </span>
+              )}
+            </Typography.Text>
           ))}
         />,
         <IconText
           type="calendar"
-          text={moment(item.publishedDate).format("ll")}
+          text={moment(item.publishedDate).format("MMM YY")}
         />
       ]}
     >

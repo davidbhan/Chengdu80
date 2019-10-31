@@ -23,6 +23,7 @@ export const renderAuthor = author => {
               topics {
                 name
               }
+              keywords
               publishedDate
             }
           }
@@ -72,6 +73,7 @@ export const renderTopic = topic => {
               topics {
                 name
               }
+              keywords
               publishedDate
             }
           }
