@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Badge, Card, Col, List, Row } from "antd";
+import { Badge, Card, Col, List, Row, Icon } from "antd";
 import { Author } from "../../components";
 import { connect } from "react-redux";
 import { papers } from "../../actions";
@@ -31,7 +31,13 @@ export const Authors = connect(
     <Card>
       <Row type={"flex"} justify={"space-between"}>
         <Col>
-          <h3>Authors</h3>
+          <h3 style={{ color: "#08c" }}>
+            <Icon
+              type="deployment-unit"
+              style={{ fontSize: "20px", paddingRight: 5 }}
+            />
+            Top Authors
+          </h3>
         </Col>
         <Col>
           <Badge count={authorsSelected.length} showZero />
@@ -39,6 +45,7 @@ export const Authors = connect(
       </Row>
       <List
         dataSource={authors}
+        size="small"
         renderItem={item => <Author author={item} />}
       />
     </Card>

@@ -18,27 +18,25 @@ class Search extends React.Component {
   render() {
     const { papers, loading, previewType } = this.props;
     return (
-      <>
-        <Row type={"flex"} justify={"center"} gutter={16}>
-          <Col span={16}>
-            <Col span={8}>
-              <Row>
-                <Authors />
-              </Row>
-              <Row>
-                <Topics />
-              </Row>
+      <Row type={"flex"} justify={"center"} gutter={16}>
+        <Col span={6}>
+          <Row gutter={[16, 16]}>
+            <Col span={24}>
+              <Authors />
             </Col>
-            <Col span={16}>
-              <SearchResults papers={papers} loading={loading} />
+            <Col span={24}>
+              <Topics />
             </Col>
-          </Col>
-          <Col span={8}>
-            {previewType === "AUTHOR" ? <Author /> : null}
-            {previewType === "PAPER" ? <Paper /> : null}
-          </Col>
-        </Row>
-      </>
+          </Row>
+        </Col>
+        <Col span={10}>
+          <SearchResults papers={papers} loading={loading} />
+        </Col>
+        <Col span={8}>
+          {previewType === "AUTHOR" ? <Author /> : null}
+          {previewType === "PAPER" ? <Paper /> : null}
+        </Col>
+      </Row>
     );
   }
 }

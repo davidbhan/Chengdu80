@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Badge, Card, Col, List, Row } from "antd";
+import { Badge, Card, Col, List, Row, Icon } from "antd";
 import { Topic } from "./Topic";
 import { connect } from "react-redux";
 import { papers } from "../../actions";
@@ -31,7 +31,10 @@ export const Topics = connect(
     <Card>
       <Row type={"flex"} justify={"space-between"}>
         <Col>
-          <h3>Topics</h3>
+          <h3 style={{ color: "green" }}>
+            <Icon type="number" style={{ fontSize: "20px", paddingRight: 5 }} />
+            Relevant Topics
+          </h3>
         </Col>
         <Col>
           <Badge count={topicsSelected.length} showZero />
