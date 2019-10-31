@@ -11,26 +11,22 @@ export const renderAuthor = author => {
             papers{
               id
               title
-              topics {
-                name
-              }
+              abstract
               authors {
                 id
                 name
-                papers {
-                  id
-                  authors {
-                    id
-                    name
-                  }
-                }
-                institution {
+                institution{
                   id
                   name
                 }
               }
+              topics {
+                name
+              }
+              publishedDate
             }
-          }}`
+          }
+        }`
       })
       .then(res => {
         dispatch({
