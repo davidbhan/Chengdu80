@@ -93,14 +93,17 @@ export const getSearchPapers = searchQuery => {
         const papers = res.data.data.search.papers;
         const authors = lodash.take(
           lodash.uniqWith(
-            lodash.flatten(lodash.map(papers, "authors")),
+            lodash.flatten(papers.map(({ authors }) => authors[0])),
             lodash.isEqual
           ),
           5
         );
         const topics = lodash.take(
           lodash.uniq(
-            lodash.map(lodash.flatten(lodash.map(papers, "topics")), "name")
+            lodash.map(
+              lodash.flatten(papers.map(({ topics }) => topics[0])),
+              "name"
+            )
           ),
           5
         );
