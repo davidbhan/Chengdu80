@@ -3,10 +3,12 @@ import ElasticSearch from "elasticsearch";
 export const ElasticSearchClient = () => {
   const client = new ElasticSearch.Client({
     hosts: [
-      "https://search-gp06chengdu80-37opvyh5nd4c4qqyuviicsouvy.us-east-2.es.amazonaws.com"
+      process.env.NODE_ENV === "PROD"
+        ? "http://localhost:9200"
+        : "https://search-gp06chengdu80-37opvyh5nd4c4qqyuviicsouvy.us-east-2.es.amazonaws.com"
     ]
   });
-
+  console.log(`Using client at: ${process.env.NODE_ENV}`);
   client.ping(
     {
       requestTimeout: 30000
