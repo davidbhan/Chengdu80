@@ -7,8 +7,21 @@ export const renderAuthor = author => {
       .post("/graphql", {
         query: `query {
           author(id: "${author.id}"){
+            id
             papers{
+              id
               title
+              authors {
+                id
+                name
+                papers {
+                  id
+                  authors {
+                    id
+                    name
+                  }
+                }
+              }
             }
           }}`
       })

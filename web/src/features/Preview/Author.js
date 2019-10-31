@@ -4,6 +4,7 @@ import { Avatar, Card, Col, List, Row } from "antd";
 import { Typography } from "antd";
 import { Paper } from "../CurateResults/Paper";
 import styled from "styled-components";
+import { NetworkGraph } from "../../components";
 
 const mapStateToProps = state => {
   return {
@@ -47,6 +48,7 @@ export const Author = connect(
           renderItem={item => <Paper item={item} />}
         />
       </PaddedRow>
+      <NetworkGraph authorData={author} />
     </Card>
   );
 });

@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 import { Card, Col, Icon, Row, Typography } from "antd";
 import React from "react";
 import styled from "styled-components";
-import { map, uniqWith, isEqual } from "lodash";
+import { map } from "lodash";
 import moment from "moment";
 
 const mapStateToProps = state => {

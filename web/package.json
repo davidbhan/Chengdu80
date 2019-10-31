@@ -1,15 +1,17 @@
 {
-  "name": "dailydose-web",
+  "name": "dragon-web",
   "version": "0.1.0",
   "private": true,
   "proxy": "http://localhost:4000/graphql",
   "dependencies": {
     "antd": "^3.24.3",
     "axios": "^0.18.0",
+    "d3": "^5.5.0",
     "formik": "^1.5.1",
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
     "react": "^16.8.3",
+    "react-d3-graph": "^2.3.0",
     "react-dom": "^16.8.3",
     "react-redux": "^6.0.1",
     "react-router-dom": "^4.3.1",
