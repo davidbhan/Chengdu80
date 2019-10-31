@@ -36,11 +36,11 @@ export const Topic = connect(mapStateToProps)(
             renderItem={item => <Paper item={item} />}
           />
         </PaddedRow>
-        <PaddedRow>
+        <PaddedRow type={"flex"} justify={"center"} align={"middle"}>
           {trendsLoading ? (
             <Spin />
           ) : (
-            <AreaChart width={400} height={250} data={topicTrends}>
+            <AreaChart width={350} height={300} data={topicTrends}>
               <defs>
                 <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
                   <stop offset="5%" stopColor="#8884d8" stopOpacity={0.8} />
