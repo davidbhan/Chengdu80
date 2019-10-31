@@ -14,6 +14,29 @@ export const GET_AUTHOR = id => `
   }
 `;
 
+export const GET_AUTHOR_NETWORK = id => `
+    query {
+    author(id: "${id}"){
+      id
+      name
+      papers {
+        id
+        authors {
+          id
+          name
+          papers {
+            id
+            authors {
+              id
+              name
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
 export const GET_TOPIC = topic => `query {
     topic(name: "${topic}"){
       name

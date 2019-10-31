@@ -38,7 +38,7 @@ export const ElasticSearchClient = () => {
     authors: (body = {}) =>
       client
         .search({
-          index: "cleanfaculty",
+          index: "relevantauthors",
           body: { ...elasticSearchSchema, ...body }
         })
         .then(response => response["hits"]["hits"])

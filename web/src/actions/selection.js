@@ -1,6 +1,6 @@
 import * as types from "../constants/ActionTypes";
 import axios from "axios";
-import { GET_AUTHOR, GET_TOPIC } from "./queries";
+import { GET_AUTHOR, GET_TOPIC, GET_AUTHOR_NETWORK } from "./queries";
 
 export const renderAuthor = author => {
   return (dispatch, getState) => {
@@ -35,11 +35,9 @@ export const renderAuthorNetwork = author => {
     });
     axios
       .post("/graphql", {
-        query: GET_AUTHOR(author.id)
+        query: GET_AUTHOR_NETWORK(author.id)
       })
       .then(res => {
-        console.log(res.data.data);
-        console.log(res.data.data.author);
         dispatch({
           type: types.GET_AUTHOR_NETWORK,
           payload: {

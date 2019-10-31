@@ -11,10 +11,5 @@ export const author = async (parent, { id }, { ElasticSearch }) => {
       }
     }
   });
-  if (!authors.length) {
-    return {
-      id
-    };
-  }
   return authors.map(({ _source }) => processAuthorSource(_source))[0];
 };
