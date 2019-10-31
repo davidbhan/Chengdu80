@@ -1,7 +1,8 @@
 function generate_weights_datastructure(data) {
   const weights = {
     papers_ids: {},
-    unified_keywords: {}
+    unified_keywords: {},
+    expertise: {}
   };
 
   if (data.length === 0) return {};
@@ -19,6 +20,30 @@ function generate_weights_datastructure(data) {
       }
     });
     paper.custom_keywords.forEach(key => {
+      if (weights.unified_keywords.hasOwnProperty(key)) {
+        weights.unified_keywords[key] += 1;
+      } else {
+        weights.unified_keywords[key] = 1;
+      }
+    });
+  });
+
+  data.authors.forEach(author => {
+    author.expertise.forEach(area => {
+      if (weights.expertise.hasOwnProperty(area)) {
+        weights.expertise[area] += 1;
+      } else {
+        weights.expertise[area] = 1;
+      }
+    });
+    author.custom_keywords.forEach(key => {
+      if (weights.unified_keywords.hasOwnProperty(key)) {
+        weights.unified_keywords[key] += 1;
+      } else {
+        weights.unified_keywords[key] = 1;
+      }
+    });
+    author.fields_of_study.forEach(key => {
       if (weights.unified_keywords.hasOwnProperty(key)) {
         weights.unified_keywords[key] += 1;
       } else {
@@ -85,6 +110,61 @@ function generate_elastic_query(original_keyword, sorted_weights) {
     }
   };
 }
+
+export const generate_elastic_query_author = (
+  original_keyword,
+  sorted_weights
+) => {
+  let expertise_arr = [];
+  const weights_fos = [50, 40, 30, 20, 10];
+  const weights_expertise = [150, 120, 90, 60, 30];
+
+  sorted_weights.expertise &&
+    sorted_weights.expertise.forEach(function(item, index) {
+      const temp_expertise = {
+        filter: { match: { expertise: item[0] } },
+        weight: weights_expertise[index]
+      };
+      expertise_arr.push(temp_expertise);
+    });
+
+  if (sorted_weights.unified_keywords[0] !== "") {
+    sorted_weights.unified_keywords &&
+      sorted_weights.unified_keywords.forEach(function(item, index) {
+        const temp_fields_of_study = {
+          filter: { match: { fields_of_study: item[0] } },
+          weight: weights_fos[index]
+        };
+        const temp_custom_keywords = {
+          filter: { match: { custom_keywords: item[0] } },
+          weight: weights_fos[index]
+        };
+
+        expertise_arr.push(temp_fields_of_study);
+        expertise_arr.push(temp_custom_keywords);
+      });
+  }
+
+  return {
+    query: {
+      function_score: {
+        query: {
+          multi_match: {
+            query: original_keyword,
+            fields: [
+              "expertise^3",
+              "fields_of_study^2",
+              "custom_keywords^2",
+              "author_name^5"
+            ],
+            fuzziness: "AUTO"
+          }
+        },
+        functions: expertise_arr
+      }
+    }
+  };
+};
 
 export const recommendationEngine = (queryString, data = []) => {
   const sorted_weights = generate_weights_datastructure(data);

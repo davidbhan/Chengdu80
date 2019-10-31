@@ -1,5 +1,8 @@
 import { processPaperSource } from "../../utils";
-import { recommendationEngine } from "../../services/recommendation_query_engine";
+import {
+  recommendationEngine,
+  generate_elastic_query_author
+} from "../../services/recommendation_query_engine";
 import { processAuthorSource } from "../../utils";
 
 export const search = async (
@@ -44,10 +47,15 @@ export const search = async (
   };
 
   const esQuery = recommendationEngine(query, data);
+  //console.log(JSON.stringify(esQuery))
   const papers = await ElasticSearch.papers(esQuery);
   const results = papers.map(({ _source }) => processPaperSource(_source));
-  const authors = (await authorsLoader.loadMany(
-    results.map(paper => paper.authors[0].id)
-  )).map(({ _source }) => processAuthorSource(_source));
+  const authorQuery = generate_elastic_query_author(query, data);
+  //console.log(JSON.stringify(authorQuery))
+  const author_result = await ElasticSearch.authors(authorQuery);
+  const authors = author_result.map(({ _source }) =>
+    processAuthorSource(_source)
+  );
+  //console.log(authors);
   return { papers: results, authors: authors, topics: null };
 };
