@@ -1,5 +1,5 @@
 import React from "react";
-import { Col, Input, Row, Typography } from "antd";
+import { Col, Input, Row } from "antd";
 import "antd/dist/antd.css";
 import logo from "../img/logo.png";
 import styled from "styled-components";

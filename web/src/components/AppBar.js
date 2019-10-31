@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { withRouter } from "react-router-dom";
 
 const ContentContainer = styled.div`
-  margin: 15px;
+  padding: 15px;
   height: 100%;
   width: 100%;
 `;
