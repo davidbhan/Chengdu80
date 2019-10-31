@@ -28,8 +28,8 @@ export const Author = connect(
 )(({ author, likeAuthor, selectAuthor }) => {
   return (
     <List.Item
-      onClick={() => selectAuthor(author)}
       key={author.name}
+      onClick={() => selectAuthor(author)}
       actions={[<Icon onClick={() => likeAuthor(author)} type="like" />]}
     >
       <List.Item.Meta

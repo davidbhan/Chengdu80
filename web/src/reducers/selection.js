@@ -13,6 +13,12 @@ export const selection = (state = initialState, action) => {
         type: "AUTHOR",
         value: action.payload.value
       };
+    case types.SELECT_PAPER:
+      return {
+        ...state,
+        type: "PAPER",
+        value: action.payload.value
+      };
     default:
       return state;
   }

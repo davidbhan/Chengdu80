@@ -7,6 +7,7 @@ import { Topics } from "./Topics";
 
 import SearchResults from "./SearchResults";
 import { Author } from "../Preview/Author";
+import { Paper } from "../Preview/Paper";
 
 class Search extends React.Component {
   componentDidMount() {
@@ -36,7 +37,10 @@ class Search extends React.Component {
               <SearchResults papers={papers} loading={loading} />
             </Col>
           </Col>
-          <Col span={8}>{previewType === "AUTHOR" ? <Author /> : null}</Col>
+          <Col span={8}>
+            {previewType === "AUTHOR" ? <Author /> : null}
+            {previewType === "PAPER" ? <Paper /> : null}
+          </Col>
         </Row>
       </>
     );

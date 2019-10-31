@@ -26,7 +26,7 @@ export const Topic = connect(
       key={topic}
       actions={[<Icon onClick={() => likeTopic(topic)} type="like" />]}
     >
-      <List.Item.Meta title={<p>{topic}</p>} />
+      <List.Item.Meta key={topic} title={<p>{topic}</p>} />
     </List.Item>
   );
 });

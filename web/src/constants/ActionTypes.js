@@ -22,3 +22,4 @@ export const ADD_TOPIC_TO_LIKE = "ADD_TOPIC_TO_LIKE";
 export const UPDATE_BASKET = "UPDATE_BASKET";
 
 export const SELECT_AUTHOR = "SELECT_AUTHOR";
+export const SELECT_PAPER = "SELECT_PAPER";

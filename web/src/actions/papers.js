@@ -69,14 +69,22 @@ export const getSearchPapers = searchQuery => {
         query: `query {
           search(query: "${searchQuery}"){
           papers{
+          id
           title
+          abstract
           authors {
             id
             name
+            institution{
+              id
+              name
+            }
           }
           topics {
             name
           }
+          publishedDate
+          
           }
           }
         }`

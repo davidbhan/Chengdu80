@@ -27,3 +27,10 @@ export const renderAuthor = author => {
       .catch(err => console.log(err));
   };
 };
+
+export const renderPaper = paper => {
+  return (dispatch, getState) => {
+    console.log(paper);
+    dispatch({ type: types.SELECT_PAPER, payload: { value: paper } });
+  };
+};

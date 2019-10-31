@@ -1,7 +1,7 @@
 import React from "react";
 import { Icon, List } from "antd";
 import { connect } from "react-redux";
-import { paut } from "../../actions";
+import { paut, selection } from "../../actions";
 
 const IconText = ({ type, text, onClick }) => (
   <span>
@@ -20,6 +20,9 @@ const mapDispatchToProps = dispatch => {
   return {
     likePaper: paper => {
       dispatch(paut.addPaperToLike(paper));
+    },
+    previewPaper: paper => {
+      dispatch(selection.renderPaper(paper));
     }
   };
 };
@@ -27,10 +30,13 @@ const mapDispatchToProps = dispatch => {
 export const Paper = connect(
   mapStateToProps,
   mapDispatchToProps
-)(({ item, color, likePaper, papers }) => {
+)(({ item, color, likePaper, previewPaper, papers }) => {
   return (
     <List.Item
       key={item.title}
+      onClick={() => {
+        previewPaper(item);
+      }}
       actions={[
         <IconText
           onClick={() => likePaper(item)}
