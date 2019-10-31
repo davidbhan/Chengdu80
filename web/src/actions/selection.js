@@ -11,6 +11,9 @@ export const renderAuthor = author => {
             papers{
               id
               title
+              topics {
+                name
+              }
               authors {
                 id
                 name
@@ -20,6 +23,10 @@ export const renderAuthor = author => {
                     id
                     name
                   }
+                }
+                institution {
+                  id
+                  name
                 }
               }
             }

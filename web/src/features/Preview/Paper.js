@@ -32,12 +32,14 @@ const authors = items => {
           {val.name}
         </PaddedText>
       </Row>
-      <Row>
-        <Icon type="bank" />
-        <PaddedText key={val.institution.name} code>
-          {val.institution.name}
-        </PaddedText>
-      </Row>
+      {val.institution.name && (
+        <Row>
+          <Icon type="bank" />
+          <PaddedText key={val.institution.id} code>
+            {val.institution.name}
+          </PaddedText>
+        </Row>
+      )}
     </PaddedRow>
   ));
 };
