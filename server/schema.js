@@ -18,6 +18,8 @@ export const typeDefs = gql`
     interests: [String]
     papers: [Paper]
     image: String
+    prestigeScore: Float
+    citationCount: Int
   }
 
   type Paper {

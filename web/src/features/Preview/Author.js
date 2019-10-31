@@ -47,7 +47,7 @@ export const Author = connect(
           </Col>
         </Row>
       )}
-      {author && author.institution.name && (
+      {author && author.institution && author.institution.name && (
         <PaddedRow>
           <Icon type="bank" />
           <PaddedText key={author.institution.id} code>
@@ -72,7 +72,9 @@ export const Author = connect(
         </PaddedRow>
       )}
       {authorNetworkLoading && <Spin />}
-      {authorNetwork.papers && <NetworkGraph authorData={authorNetwork} />}
+      {authorNetwork && authorNetwork.papers && (
+        <NetworkGraph authorData={authorNetwork} />
+      )}
     </Card>
   );
 });

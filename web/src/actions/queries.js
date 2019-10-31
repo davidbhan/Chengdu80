@@ -10,6 +10,8 @@ export const GET_AUTHOR = id => `
         id
         name
       }
+      prestigeScore
+      citationCount
       ${PAPERS_QUERY}
     }
   }
@@ -20,16 +22,22 @@ export const GET_AUTHOR_NETWORK = id => `
     author(id: "${id}"){
       id
       name
+      prestigeScore
+      citationCount
       papers {
         id
         authors {
           id
           name
+          prestigeScore
+          citationCount
           papers {
             id
             authors {
               id
               name
+              prestigeScore
+              citationCount
             }
           }
         }
@@ -56,13 +64,15 @@ export const GET_SEARCH = (paperIds, authorIds, topics, searchQuery) => `query {
           id
           name
         }
+        prestigeScore
+        citationCount
       }
     }
   }`;
 
 export const GET_TOPIC_TREND = topic => `query{
       topicAggregateCitations(topic:"${topic}"){
-            year
-            citations
+        year
+        citations
       }
 }`;

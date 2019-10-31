@@ -26,9 +26,9 @@ const mapDispatchToProps = dispatch => {
       dispatch(paut.addAuthorToLike(author));
       dispatch(papers.getAuthors());
     },
-    selectAuthor: author => {
-      dispatch(selection.renderAuthor(author));
-      dispatch(selection.renderAuthorNetwork(author));
+    selectAuthor: author_id => {
+      dispatch(selection.renderAuthor(author_id));
+      dispatch(selection.renderAuthorNetwork(author_id));
     },
     redoSearch: () => {
       dispatch(papers.getSearchPapers());
@@ -43,7 +43,7 @@ export const Author = connect(
   return (
     <ClickableListItem
       key={author.name}
-      onClick={() => selectAuthor(author)}
+      onClick={() => selectAuthor(author.id)}
       actions={[
         <Icon
           onClick={() => {

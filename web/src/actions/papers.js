@@ -90,6 +90,7 @@ export const getSearchPapers = () => {
             "name"
           )
         );
+        console.log(authors);
         return dispatch({
           type: types.GET_PAPERS,
           payload: {

@@ -1,8 +1,13 @@
 import * as types from "../constants/ActionTypes";
 import axios from "axios";
-import { GET_AUTHOR, GET_TOPIC, GET_TOPIC_TREND, GET_AUTHOR_NETWORK } from "./queries";
+import {
+  GET_AUTHOR,
+  GET_TOPIC,
+  GET_TOPIC_TREND,
+  GET_AUTHOR_NETWORK
+} from "./queries";
 
-export const renderAuthor = author => {
+export const renderAuthor = author_id => {
   return (dispatch, getState) => {
     dispatch({
       type: types.SELECT_AUTHOR,
@@ -13,7 +18,7 @@ export const renderAuthor = author => {
     });
     axios
       .post("/graphql", {
-        query: GET_AUTHOR(author.id)
+        query: GET_AUTHOR(author_id)
       })
       .then(res => {
         dispatch({
@@ -30,7 +35,7 @@ export const renderAuthor = author => {
   };
 };
 
-export const renderAuthorNetwork = author => {
+export const renderAuthorNetwork = author_id => {
   return (dispatch, getState) => {
     dispatch({
       type: types.GET_AUTHOR_NETWORK,
@@ -41,7 +46,7 @@ export const renderAuthorNetwork = author => {
     });
     axios
       .post("/graphql", {
-        query: GET_AUTHOR_NETWORK(author.id)
+        query: GET_AUTHOR_NETWORK(author_id)
       })
       .then(res => {
         dispatch({
