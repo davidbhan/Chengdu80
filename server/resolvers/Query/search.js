@@ -10,18 +10,11 @@ export const search = async (
     ? (await ElasticSearch.papers({
         query: {
           bool: {
-            should: [
-              ...paperIds.map(id => ({
+            should: paperIds.map(id => ({
                 match_phrase: {
                   _id: id
                 }
               })),
-              ...authorIds.map(id => ({
-                match_phrase: {
-                  "author_list.author_id": id
-                }
-              }))
-            ],
             minimum_should_match: 1
           }
         }

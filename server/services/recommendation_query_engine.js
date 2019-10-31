@@ -1,9 +1,7 @@
 function generate_weights_datastructure(data) {
   const weights = {
     papers_ids: {},
-    unified_keywords: {},
-    author_ids: {},
-    expertise: {}
+    unified_keywords: {}
   };
 
   if (data.length === 0) return {};
@@ -25,30 +23,6 @@ function generate_weights_datastructure(data) {
         weights.unified_keywords[key] += 1;
       } else {
         weights.unified_keywords[key] = 1;
-      }
-    });
-    paper.author_list.forEach(author => {
-      if (weights.author_ids.hasOwnProperty(author)) {
-        weights.author_ids[author] += 1;
-      } else {
-        weights.author_ids[author] = 1;
-      }
-    });
-  });
-
-  data.authors.forEach(author => {
-    author.msa_papers.forEach(paper => {
-      if (weights.papers_ids.hasOwnProperty(paper)) {
-        weights.papers_ids[paper] += 1;
-      } else {
-        weights.papers_ids[paper] = 1;
-      }
-    });
-    author.expertise.forEach(area => {
-      if (weights.expertise.hasOwnProperty(area)) {
-        weights.expertise[area] += 1;
-      } else {
-        weights.expertise[area] = 1;
       }
     });
   });
@@ -94,6 +68,14 @@ function generate_elastic_query(original_keyword, sorted_weights) {
       };
       custom_keywords.push(temp_abs);
       custom_keywords.push(temp_title);
+    });
+  sorted_weights.papers_ids &&
+    sorted_weights.papers_ids.forEach(function(item, index) {
+      temp_id = { 
+          "filter": { "match": { "_id": item[0] } },
+          "weight": weights_title[index]
+      };
+      custom_keywords.push(temp_id);
     });
 
   return {
