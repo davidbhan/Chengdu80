@@ -1,42 +1,21 @@
 import * as types from "../constants/ActionTypes";
 import axios from "axios";
+import { GET_AUTHOR, GET_TOPIC } from "./queries";
 
 export const renderAuthor = author => {
   return (dispatch, getState) => {
     axios
       .post("/graphql", {
-        query: `query {
-          author(id: "${author.id}"){
-            id
-            papers{
-              id
-              title
-              abstract
-              authors {
-                id
-                name
-                institution{
-                  id
-                  name
-                }
-              }
-              topics {
-                name
-              }
-              keywords
-              publishedDate
-            }
-          }
-        }`
+        query: GET_AUTHOR(author.id)
       })
       .then(res => {
         dispatch({
           type: types.SELECT_AUTHOR,
           payload: {
             value: {
+              ...res.data.data.author,
               id: author.id,
-              name: author.name,
-              papers: res.data.data.author.papers
+              name: author.name
             }
           }
         });
@@ -55,37 +34,15 @@ export const renderTopic = topic => {
   return dispatch => {
     axios
       .post("/graphql", {
-        query: `query {
-          topic(name: "${topic}"){
-            name
-            papers {
-              id
-              title
-              abstract
-              authors {
-                id
-                name
-                institution{
-                  id
-                  name
-                }
-              }
-              topics {
-                name
-              }
-              keywords
-              publishedDate
-            }
-          }
-        }`
+        query: GET_TOPIC(topic)
       })
       .then(res => {
         dispatch({
           type: types.SELECT_TOPIC,
           payload: {
             value: {
-              name: topic,
-              papers: res.data.data.topic.papers
+              ...res.data.data.topic,
+              name: topic
             }
           }
         });

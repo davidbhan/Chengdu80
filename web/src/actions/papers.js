@@ -1,6 +1,7 @@
 import axios from "axios";
 import lodash, { map } from "lodash";
 import * as types from "../constants/ActionTypes";
+import { GET_SEARCH } from "./queries";
 
 export const getAllPapers = () => {
   return (dispatch, getState) => {
@@ -67,40 +68,16 @@ export const getSearchPapers = () => {
     const paperIds = map(current_basket.papers, "id");
     const topics = current_basket.topics;
 
-    console.log(paperIds, authorIds, topics, searchQuery);
-
     dispatch({
       type: types.GET_PAPERS,
       payload: { papers: [], loading: true }
     });
     return axios
       .post("/graphql", {
-        query: `query {
-          search(query: "${searchQuery}", paperIds: [${paperIds}], authorIds: [${authorIds}], topics: [${topics}]){
-            papers {
-              id
-              title
-              abstract
-              authors {
-                id
-                name
-                institution{
-                  id
-                  name
-                }
-              }
-              topics {
-                name
-              }
-              keywords
-              publishedDate
-            }
-          }
-        }`
+        query: GET_SEARCH(paperIds, authorIds, topics, searchQuery)
       })
       .then(res => {
         const papers = res.data.data.search.papers;
-        console.log(papers);
         const authors = lodash.take(
           lodash.uniqWith(
             lodash.flatten(papers.map(({ authors }) => authors[0])),
