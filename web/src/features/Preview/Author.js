@@ -82,13 +82,15 @@ export const Author = connect(
       {author && author.citationCount ? (
         <PaddedRow>
           <Icon type="number" />
-          <PaddedText code>Cited {author.citationCount} times</PaddedText>
+          <PaddedText code>Work cited {author.citationCount} times</PaddedText>
         </PaddedRow>
       ) : null}
       {author && author.totalPapers ? (
         <PaddedRow>
           <Icon type="solution" />
-          <PaddedText code>{author.totalPapers} research papers</PaddedText>
+          <PaddedText code>
+            {author.totalPapers} authored/coauthored papers
+          </PaddedText>
         </PaddedRow>
       ) : null}
       <PaddedRow>
@@ -98,7 +100,7 @@ export const Author = connect(
         />
       </PaddedRow>
       {author && author.interests ? (
-        <PaddedRow>
+        <PaddedRow style={{ overflowY: "scroll", height: 400 }}>
           <Icon type="solution" />
           {uniq(author.interests).map(val => (
             <PaddedText key={val} code>
@@ -110,6 +112,7 @@ export const Author = connect(
       {author && (
         <PaddedRow>
           <List
+            header="Authored or Coauthored Papers"
             itemLayout="vertical"
             size="small"
             pagination={{

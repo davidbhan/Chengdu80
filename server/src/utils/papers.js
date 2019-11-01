@@ -8,7 +8,8 @@ export const processPaperSource = ({
   author_list,
   venue: { venue_published_date },
   paper_id,
-  custom_keywords
+  custom_keywords,
+  citation_count
 }) => ({
   id: paper_id,
   title,
@@ -16,7 +17,8 @@ export const processPaperSource = ({
   topics: fields_of_study.map(name => ({ name })),
   keywords: custom_keywords,
   authors: author_list.map(_source => processAuthorSource(_source)),
-  publishedDate: venue_published_date
+  publishedDate: venue_published_date,
+  citationCount: citation_count
 });
 
 const findAuthorPapers = (ElasticSearch, author_ids) => {

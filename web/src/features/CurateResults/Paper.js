@@ -22,6 +22,7 @@ export const PAPERS_QUERY = `
     }
     keywords
     publishedDate
+    citationCount
   }
 `;
 export const IconText = ({ type, text, onClick }) => (

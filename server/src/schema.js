@@ -31,6 +31,7 @@ export const typeDefs = gql`
     keywords: [String]
     authors: [Author]
     publishedDate: String
+    citationCount: Int
   }
 
   type Result {

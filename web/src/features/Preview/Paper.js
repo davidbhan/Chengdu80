@@ -81,6 +81,10 @@ export const Paper = connect(
       </Row>
       {authors(paper.authors)}
       <PaddedRow>
+        <Icon type="file-text" code />
+        <PaddedText code>Cited in: {paper.citationCount} Papers</PaddedText>
+      </PaddedRow>
+      <PaddedRow>
         <Icon type="book" />
         {topics([...paper.topics.map(topic => topic.name), ...paper.keywords])}
       </PaddedRow>
