@@ -60,3 +60,8 @@ Some queries you can try are:
 - Richard H. Thaler
 - Florencio Lopez-de-Silanes
 
+- Stock-Market Crashes and Depressions
+- Equity Vesting and Investment
+- Meeting Technologies in Decentralized Asset Markets
+- Microeconomic Heterogeneity and Macroeconomic Shocks
+- 
