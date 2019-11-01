@@ -38,6 +38,7 @@ Navigate to a web browser and type localhost:4000/ a search window appears.
 The search supports various types of queries involving research papers, research topics as well as paper authors.
 
 Some queries you can try are:
+#### Trending Topics
 - financial management
 - foreign direct investment
 - investment banking
@@ -49,6 +50,7 @@ Some queries you can try are:
 - banking industry
 - debt capital
 
+#### Top Authors
 - Matthew O. Jackson
 - Jeffrey Wurgler
 - Rafael La Porta 
@@ -60,8 +62,14 @@ Some queries you can try are:
 - Richard H. Thaler
 - Florencio Lopez-de-Silanes
 
+#### Popular Papers
 - Stock-Market Crashes and Depressions
 - Equity Vesting and Investment
 - Meeting Technologies in Decentralized Asset Markets
 - Microeconomic Heterogeneity and Macroeconomic Shocks
-- 
+- Investment Hangover and the Great Recession
+- The Development of China's Stock Market and Stakes for the Global Economy
+- State ownership and transparency in foreign direct investment
+- Financial Intermediary Capital
+- The Use and Misuse of Patent Data: Issues for Corporate Finance and Beyond
+- Conglomerate Industry Spanning
