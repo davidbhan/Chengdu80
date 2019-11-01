@@ -161,7 +161,7 @@ export const generate_elastic_query_author = (
               "expertise^3",
               "fields_of_study^2",
               "custom_keywords^2",
-              "author_name^5"
+              "author_name^2"
             ],
             fuzziness: "AUTO"
           }
