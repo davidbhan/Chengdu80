@@ -3,7 +3,7 @@ import { Badge, Card, Col, Icon, List, Popover, Row } from "antd";
 import { Author } from "./Author";
 import { connect } from "react-redux";
 import { papers } from "../../actions";
-import { PopoverList } from "./PopoverList";
+import { AuthorPopoverList } from "./AuthorPopoverList";
 
 const mapStateToProps = state => {
   return {
@@ -43,7 +43,7 @@ export const Authors = connect(
         </Col>
         <Col>
           <Popover
-            content={<PopoverList content={authorsSelected} />}
+            content={<AuthorPopoverList content={authorsSelected} />}
             title="Liked authors"
           >
             <Badge count={authorsSelected.length} showZero />

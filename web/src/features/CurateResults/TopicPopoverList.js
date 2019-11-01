@@ -18,29 +18,29 @@ const mapStateToProps = dispatch => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    selectAuthor: author_id => {
-      dispatch(selection.renderAuthor(author_id));
-      dispatch(selection.renderAuthorNetwork(author_id));
+    selectTopic: topic => {
+      dispatch(selection.renderTopic(topic));
+      dispatch(selection.renderTopicTrends(topic));
     }
   };
 };
 
-export const PopoverList = connect(
+export const TopicPopoverList = connect(
   mapStateToProps,
   mapDispatchToProps
-)(({ content, selectAuthor }) => {
+)(({ content, selectTopic }) => {
   return (
     <List
       size={"small"}
       dataSource={content}
       renderItem={item => (
         <ClickableListItem
-          key={item.id}
+          key={item}
           onClick={() => {
-            selectAuthor(item.id);
+            selectTopic(item);
           }}
         >
-          {item.name}
+          {item}
         </ClickableListItem>
       )}
     />
