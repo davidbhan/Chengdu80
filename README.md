@@ -48,4 +48,15 @@ Some queries you can try are:
 - financial crisis
 - banking industry
 - debt capital
-- equity capital
+
+- Matthew O. Jackson
+- Jeffrey Wurgler
+- Rafael La Porta 
+- Andrei Shleifer 
+- Abhijit Banerjee
+- Andrew Y. Ng
+- Robert W. Vishny
+- Nicholas Barberis
+- Richard H. Thaler
+- Florencio Lopez-de-Silanes
+
