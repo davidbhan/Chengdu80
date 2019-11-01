@@ -20,7 +20,7 @@ If it is not running, then start the service by `sudo systemctl start elasticsea
 ### Run React Web App
 On the Ubuntu Server, navigate to `/home/swufe/Chengdu80/web` and run `yarn install` and after that run `yarn build`
 
-Then navigate to `/home/swufe/Chengdu80/server` and run `yarn install` and after that run `NODE_ENV=PROD yarn dev`
+Then navigate to `/home/swufe/Chengdu80/server` and run `yarn install` and after that run `yarn build` and then run `NODE_ENV=PROD yarn start`
 
 This app will open at localhost:4000/
 
