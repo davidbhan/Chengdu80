@@ -1,8 +1,10 @@
 import React, { useEffect } from "react";
-import { List, Row, Col, Card, Icon, Badge } from "antd";
+import { List, Row, Col, Card, Icon, Badge, Popover } from "antd";
 import { Paper } from "./Paper";
 import { connect } from "react-redux";
 import { papers } from "../../actions";
+import { AuthorPopoverList } from "./AuthorPopoverList";
+import { PaperPopoverList } from "./PaperPopoverList";
 
 const mapStateToProps = state => {
   return {
@@ -39,7 +41,12 @@ const SearchResults = connect(
         </Col>
         {exploreMode && (
           <Col>
-            <Badge count={papersSelected.length} showZero />
+            <Popover
+              content={<PaperPopoverList content={papersSelected} />}
+              title="Liked Papers"
+            >
+              <Badge count={papersSelected.length} showZero />
+            </Popover>
           </Col>
         )}
       </Row>
