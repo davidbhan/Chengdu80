@@ -5,6 +5,7 @@ import logo from "../img/logo.png";
 import styled from "styled-components";
 import * as paut from "../actions/paut";
 import { connect } from "react-redux";
+import * as selection from "../actions/selection";
 
 const Image = styled.img`
     width: 200px
@@ -58,6 +59,7 @@ const mapDispatchToProps = dispatch => {
   return {
     resetState: () => {
       dispatch(paut.resetBasket());
+      dispatch(selection.resetSelection());
     }
   };
 };
