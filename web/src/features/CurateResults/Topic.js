@@ -53,13 +53,7 @@ export const Topic = connect(
               redoSearch();
             }}
             type="like"
-            theme={
-              topicsSelected
-                .map(topicSelected => topicSelected.id)
-                .includes(topic.id)
-                ? "filled"
-                : "outlined"
-            }
+            theme={topicsSelected.includes(topic) ? "filled" : "outlined"}
           />
         ]}
       >
