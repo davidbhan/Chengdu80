@@ -12,11 +12,10 @@ import { Redirect } from "react-router-dom";
 class Search extends React.Component {
   componentDidMount() {
     this.props.setSearchQuery();
-    this.props.getSearchPapers();
   }
 
   render() {
-    const { papers, loading, previewType } = this.props;
+    const { loading, previewType } = this.props;
     if (sessionStorage.getItem("query") === null) {
       return <Redirect to={"/"} />;
     }
@@ -26,15 +25,15 @@ class Search extends React.Component {
           <Col span={6}>
             <Row gutter={[16, 16]}>
               <Col span={24}>
-                <Authors />
+                <Authors loading={loading} />
               </Col>
               <Col span={24}>
-                <Topics />
+                <Topics loading={loading} />
               </Col>
             </Row>
           </Col>
           <Col span={10} style={{ height: "100vh" }}>
-            <SearchResults papers={papers} loading={loading} />
+            <SearchResults loading={loading} />
           </Col>
           <Col
             span={8}
@@ -71,8 +70,6 @@ class Search extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    papers: state.papers.papers,
-    loading: state.papers.loading,
     previewType: state.selection.type,
     search_query: state.selection.search_query
   };
@@ -80,12 +77,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getAllPapers: () => {
-      dispatch(papers.getAllPapers());
-    },
-    getSearchPapers: query => {
-      dispatch(papers.getSearchPapers());
-    },
     setSearchQuery: () => {
       dispatch(papers.setQuery());
     }

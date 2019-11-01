@@ -9,7 +9,8 @@ const mapStateToProps = state => {
   return {
     topics: state.papers.topics,
     topicsSelected: state.paut.topics,
-    loading: state.papers.loading
+    loading: state.papers.loading,
+    exploreMode: state.paut.exploreMode
   };
 };
 
@@ -24,7 +25,7 @@ const mapDispatchToProps = dispatch => {
 export const Topics = connect(
   mapStateToProps,
   mapDispatchToProps
-)(({ topics, topicsSelected, getTopics, loading }) => {
+)(({ topics, topicsSelected, exploreMode, getTopics, loading }) => {
   useEffect(() => {
     getTopics();
   }, [loading]);
@@ -35,19 +36,25 @@ export const Topics = connect(
         <Col>
           <h3 style={{ color: "green" }}>
             <Icon type="number" style={{ fontSize: "20px", paddingRight: 5 }} />
-            Relevant Topics
+            {exploreMode ? "Relevant Topics" : "Liked Topics"}
           </h3>
         </Col>
-        <Col>
-          <Popover
-            content={<TopicPopoverList content={topicsSelected} />}
-            title="Liked topics"
-          >
-            <Badge count={topicsSelected.length} showZero />
-          </Popover>
-        </Col>
+        {exploreMode && (
+          <Col>
+            <Popover
+              content={<TopicPopoverList content={topicsSelected} />}
+              title="Liked topics"
+            >
+              <Badge count={topicsSelected.length} showZero />
+            </Popover>
+          </Col>
+        )}
       </Row>
-      <List dataSource={topics} renderItem={item => <Topic topic={item} />} />
+      <List
+        loading={loading}
+        dataSource={exploreMode ? topics : topicsSelected}
+        renderItem={item => <Topic topic={item} />}
+      />
     </Card>
   );
 });

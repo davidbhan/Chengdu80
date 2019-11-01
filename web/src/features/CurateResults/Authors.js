@@ -9,7 +9,8 @@ const mapStateToProps = state => {
   return {
     authors: state.papers.authors,
     authorsBasket: state.paut.authors,
-    loading: state.papers.loading
+    loading: state.papers.loading,
+    exploreMode: state.paut.exploreMode
   };
 };
 
@@ -24,7 +25,7 @@ const mapDispatchToProps = dispatch => {
 export const Authors = connect(
   mapStateToProps,
   mapDispatchToProps
-)(({ authors, authorsBasket, getAuthors, loading }) => {
+)(({ authors, authorsBasket, exploreMode, getAuthors, loading }) => {
   useEffect(() => {
     getAuthors();
   }, [loading, authorsBasket]);
@@ -37,21 +38,24 @@ export const Authors = connect(
               type="deployment-unit"
               style={{ fontSize: "20px", paddingRight: 5 }}
             />
-            Top Authors
+            {exploreMode ? `Top Authors` : `Liked Authors`}
           </h3>
         </Col>
-        <Col>
-          <Popover
-            content={<AuthorPopoverList content={authorsBasket} />}
-            title="Liked authors"
-          >
-            <Badge count={authorsBasket.length} showZero />
-          </Popover>
-        </Col>
+        {exploreMode && (
+          <Col>
+            <Popover
+              content={<AuthorPopoverList content={authorsBasket} />}
+              title="Liked Authors"
+            >
+              <Badge count={authorsBasket.length} showZero />
+            </Popover>
+          </Col>
+        )}
       </Row>
       <List
-        dataSource={authors}
+        dataSource={exploreMode ? authors : authorsBasket}
         size="small"
+        loading={loading}
         renderItem={item => <Author author={item} />}
       />
     </Card>

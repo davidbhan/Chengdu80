@@ -6,7 +6,7 @@ import { ClickableListItem } from "./Author";
 
 const mapStateToProps = state => {
   return {
-    topics: state.paut.topics
+    topicsSelected: state.paut.topics
   };
 };
 
@@ -30,25 +30,41 @@ const mapDispatchToProps = dispatch => {
 export const Topic = connect(
   mapStateToProps,
   mapDispatchToProps
-)(({ topic, likeTopic, selectTopic, renderTopicTrends, redoSearch }) => {
-  return (
-    <ClickableListItem
-      key={topic}
-      onClick={() => {
-        selectTopic(topic);
-        renderTopicTrends(topic);
-      }}
-      actions={[
-        <Icon
-          onClick={() => {
-            likeTopic(topic);
-            redoSearch();
-          }}
-          type="like"
-        />
-      ]}
-    >
-      <List.Item.Meta style={{ padding: 0 }} key={topic} title={topic} />
-    </ClickableListItem>
-  );
-});
+)(
+  ({
+    topic,
+    likeTopic,
+    selectTopic,
+    renderTopicTrends,
+    redoSearch,
+    topicsSelected
+  }) => {
+    return (
+      <ClickableListItem
+        key={topic}
+        onClick={() => {
+          selectTopic(topic);
+          renderTopicTrends(topic);
+        }}
+        actions={[
+          <Icon
+            onClick={() => {
+              likeTopic(topic);
+              redoSearch();
+            }}
+            type="like"
+            theme={
+              topicsSelected
+                .map(topicSelected => topicSelected.id)
+                .includes(topic.id)
+                ? "filled"
+                : "outlined"
+            }
+          />
+        ]}
+      >
+        <List.Item.Meta style={{ padding: 0 }} key={topic} title={topic} />
+      </ClickableListItem>
+    );
+  }
+);

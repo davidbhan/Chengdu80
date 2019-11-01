@@ -16,7 +16,7 @@ export const ClickableListItem = styled(List.Item)`
 
 const mapStateToProps = state => {
   return {
-    authors: state.paut.authors
+    authorsSelected: state.paut.authors
   };
 };
 
@@ -39,7 +39,7 @@ const mapDispatchToProps = dispatch => {
 export const Author = connect(
   mapStateToProps,
   mapDispatchToProps
-)(({ author, likeAuthor, selectAuthor, redoSearch }) => {
+)(({ author, authorsSelected, likeAuthor, selectAuthor, redoSearch }) => {
   return (
     <ClickableListItem
       key={author.name}
@@ -51,6 +51,13 @@ export const Author = connect(
             redoSearch();
           }}
           type="like"
+          theme={
+            authorsSelected
+              .map(authorSelected => authorSelected.id)
+              .includes(author.id)
+              ? "filled"
+              : "outlined"
+          }
         />
       ]}
     >

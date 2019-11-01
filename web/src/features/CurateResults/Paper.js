@@ -34,7 +34,7 @@ export const IconText = ({ type, text, onClick }) => (
 
 const mapStateToProps = state => {
   return {
-    papers: state.paut.papers
+    papersSelected: state.paut.papers
   };
 };
 
@@ -55,7 +55,7 @@ const mapDispatchToProps = dispatch => {
 export const Paper = connect(
   mapStateToProps,
   mapDispatchToProps
-)(({ item, likePaper, previewPaper, redoSearch }) => {
+)(({ item, likePaper, previewPaper, redoSearch, papersSelected }) => {
   return (
     <List.Item
       key={item.title}
@@ -69,6 +69,13 @@ export const Paper = connect(
             redoSearch();
           }}
           type="like"
+          theme={
+            papersSelected
+              .map(paperSelected => paperSelected.id)
+              .includes(item.id)
+              ? "filled"
+              : "outlined"
+          }
         />,
         <IconText
           type="user"
