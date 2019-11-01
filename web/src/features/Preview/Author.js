@@ -98,13 +98,6 @@ export const Author = connect(
           loading={authorNetworkLoading}
         />
       </PaddedRow>
-      <PaddedRow>
-        <NetworkGraphModal
-          authorData={authorNetwork}
-          loading={authorNetworkLoading}
-          beta={true}
-        />
-      </PaddedRow>
       {author && author.interests ? (
         <PaddedRow style={{ overflowY: "scroll", maxHeight: 200 }}>
           <Icon type="solution" /> Expertise:
