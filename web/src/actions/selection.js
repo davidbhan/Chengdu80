@@ -107,3 +107,9 @@ export const renderTopicTrends = topic => {
       .catch(err => console.log(err));
   };
 };
+
+export const resetSelection = () => {
+  return dispatch => {
+    dispatch({ type: types.RESET_SELECTION });
+  };
+};

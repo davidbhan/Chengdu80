@@ -42,6 +42,10 @@ export const selection = (state = initialState, action) => {
         topicTrends: action.payload.data,
         topicTrendsLoading: action.payload.loading
       };
+    case types.RESET_SELECTION:
+      return {
+        ...initialState
+      };
     default:
       return state;
   }
