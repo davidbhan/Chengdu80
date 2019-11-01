@@ -12,7 +12,6 @@ export const PAPERS_QUERY = `
     authors {
       id
       name
-      image
       institution {
         id
         name

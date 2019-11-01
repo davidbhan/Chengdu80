@@ -20,6 +20,7 @@ export const typeDefs = gql`
     image: String
     prestigeScore: Float
     citationCount: Int
+    totalPapers: Int
   }
 
   type Paper {

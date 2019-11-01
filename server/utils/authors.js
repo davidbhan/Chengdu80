@@ -8,7 +8,8 @@ export const processAuthorSource = ({
   image_url,
   prestige_score,
   citation_count,
-  fields_of_study
+  fields_of_study,
+  papers = []
 }) => ({
   id: author_id,
   name: author_name,
@@ -19,7 +20,8 @@ export const processAuthorSource = ({
   image: image_url,
   prestigeScore: prestige_score,
   citationCount: citation_count,
-  interests: fields_of_study
+  interests: fields_of_study,
+  totalPapers: papers.length
 });
 
 const findAuthors = (ElasticSearch, author_ids) => {

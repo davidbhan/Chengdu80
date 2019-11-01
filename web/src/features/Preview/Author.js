@@ -76,7 +76,7 @@ export const Author = connect(
       {author && author.prestigeScore ? (
         <PaddedRow>
           <Icon type="area-chart" />
-          <PaddedText code>{author.prestigeScore} points</PaddedText>
+          <PaddedText code>Prestige Score: {author.prestigeScore}</PaddedText>
         </PaddedRow>
       ) : null}
       {author && author.citationCount ? (
@@ -85,10 +85,10 @@ export const Author = connect(
           <PaddedText code>Cited {author.citationCount} times</PaddedText>
         </PaddedRow>
       ) : null}
-      {author && author.papers ? (
+      {author && author.totalPapers ? (
         <PaddedRow>
           <Icon type="solution" />
-          <PaddedText code>{author.papers.length} research papers</PaddedText>
+          <PaddedText code>{author.totalPapers} research papers</PaddedText>
         </PaddedRow>
       ) : null}
       {author && author.interests ? (
