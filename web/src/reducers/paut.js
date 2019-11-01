@@ -29,6 +29,10 @@ export const paut = (state = initialState, action) => {
         ...state,
         exploreMode: !state.exploreMode
       };
+    case types.RESET_BASKET:
+      return {
+        ...initialState
+      };
     default:
       return state;
   }

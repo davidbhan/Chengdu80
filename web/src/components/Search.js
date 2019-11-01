@@ -3,6 +3,8 @@ import { Col, Input, Row } from "antd";
 import "antd/dist/antd.css";
 import logo from "../img/logo.png";
 import styled from "styled-components";
+import * as paut from "../actions/paut";
+import { connect } from "react-redux";
 
 const Image = styled.img`
     width: 200px
@@ -10,6 +12,11 @@ const Image = styled.img`
 `;
 
 class Search extends React.Component {
+  componentDidMount() {
+    const { resetState } = this.props;
+    resetState();
+  }
+
   render() {
     return (
       <div
@@ -43,4 +50,19 @@ class Search extends React.Component {
   }
 }
 
-export default Search;
+const mapStateToProps = state => {
+  return {};
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    resetState: () => {
+      dispatch(paut.resetBasket());
+    }
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Search);

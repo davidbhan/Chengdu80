@@ -23,3 +23,9 @@ export const addTopicToLike = topic => {
     dispatch({ type: types.ADD_TOPIC_TO_LIKE, payload: { topic: topic } });
   };
 };
+
+export const resetBasket = () => {
+  return (dispatch, getState) => {
+    dispatch({ type: types.RESET_BASKET });
+  };
+};
