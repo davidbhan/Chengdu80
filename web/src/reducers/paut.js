@@ -3,7 +3,8 @@ import * as types from "../constants/ActionTypes";
 const initialState = {
   papers: [],
   authors: [],
-  topics: []
+  topics: [],
+  exploreMode: true
 };
 
 export const paut = (state = initialState, action) => {
@@ -22,6 +23,11 @@ export const paut = (state = initialState, action) => {
       return {
         ...state,
         topics: [...state.topics, action.payload.topic]
+      };
+    case types.TOGGLE_EXPLORE_MODE:
+      return {
+        ...state,
+        exploreMode: !state.exploreMode
       };
     default:
       return state;

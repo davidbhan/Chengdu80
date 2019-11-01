@@ -1,10 +1,10 @@
 import React from "react";
-import { Button, Icon, Layout, Menu, Row } from "antd";
+import { Button, Icon, Layout, Menu, Row, Switch } from "antd";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import styled from "styled-components";
 
-import { auth } from "../actions";
+import { auth, paut } from "../actions";
 import { User } from "./User";
 
 const { Sider } = Layout;
@@ -28,7 +28,13 @@ class SideMenu extends React.Component {
   };
 
   render() {
-    const { children, user, logout } = this.props;
+    const {
+      children,
+      user,
+      logout,
+      exploreMode,
+      toggleExploreMode
+    } = this.props;
     const { collapsed } = this.state;
     return (
       <Layout style={{ minHeight: "100vh" }}>
@@ -74,6 +80,36 @@ class SideMenu extends React.Component {
               </Link>
             </Menu.Item>
           </Menu>
+          <SideBarItem type="flex" justify="center">
+            <span style={{ color: "white", paddingRight: 5 }}>Mode:</span>
+            <Switch
+              defaultChecked
+              checkedChildren={
+                <span>
+                  <Icon
+                    type="bulb"
+                    theme="filled"
+                    style={{ paddingRight: 4, color: "yellow" }}
+                  />
+                  {!collapsed && <span>Explore</span>}
+                </span>
+              }
+              unCheckedChildren={
+                <span>
+                  <Icon
+                    type="check-circle"
+                    theme="twoTone"
+                    twoToneColor="#52c41a"
+                    style={{ paddingRight: 4 }}
+                  />
+                  {!collapsed && <span>Look Back</span>}
+                </span>
+              }
+              onChange={() => toggleExploreMode()}
+              style={{ backgroundColor: exploreMode ? "#0088cc" : "green" }}
+              checked={exploreMode}
+            />
+          </SideBarItem>
         </Sider>
         <Layout style={{ backgroundColor: "white" }}>{children}</Layout>
       </Layout>
@@ -83,13 +119,15 @@ class SideMenu extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    user: state.auth.user
+    user: state.auth.user,
+    exploreMode: state.paut.exploreMode
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    logout: () => dispatch(auth.logout())
+    logout: () => dispatch(auth.logout()),
+    toggleExploreMode: () => dispatch(paut.toggleExploreMode())
   };
 };
 

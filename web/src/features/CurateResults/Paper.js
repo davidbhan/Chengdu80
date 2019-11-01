@@ -25,7 +25,7 @@ export const PAPERS_QUERY = `
     publishedDate
   }
 `;
-const IconText = ({ type, text, onClick }) => (
+export const IconText = ({ type, text, onClick }) => (
   <span>
     <Icon type={type} style={{ marginRight: 8 }} onClick={onClick} />
     {text}
