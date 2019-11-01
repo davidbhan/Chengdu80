@@ -41,4 +41,11 @@ Some queries you can try are:
 - financial management
 - foreign direct investment
 - investment banking
-
+- privatisation
+- capital investment
+- microfinance
+- CSR
+- financial crisis
+- banking industry
+- debt capital
+- equity capital
