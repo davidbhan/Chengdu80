@@ -15,8 +15,8 @@ const myConfig = {
   link: {
     highlightColor: "lightblue"
   },
-  height: 300,
-  width: 350
+  height: 400,
+  width: 900
 };
 
 const DEGREE_COLORS = ["#0392ea", "#1dcdff"];

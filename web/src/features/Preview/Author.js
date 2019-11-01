@@ -4,7 +4,7 @@ import { Avatar, Card, Col, List, Row, Spin, Icon } from "antd";
 import { Typography } from "antd";
 import { Paper } from "../CurateResults/Paper";
 import styled from "styled-components";
-import { NetworkGraph } from "../../components";
+import { NetworkGraph, NetworkGraphModal } from "../../components";
 import { uniq } from "lodash";
 import * as selection from "../../actions/selection";
 import { papers, paut } from "../../actions";
@@ -91,6 +91,12 @@ export const Author = connect(
           <PaddedText code>{author.totalPapers} research papers</PaddedText>
         </PaddedRow>
       ) : null}
+      <PaddedRow>
+        <NetworkGraphModal
+          authorData={authorNetwork}
+          loading={authorNetworkLoading}
+        />
+      </PaddedRow>
       {author && author.interests ? (
         <PaddedRow>
           <Icon type="solution" />
@@ -116,10 +122,6 @@ export const Author = connect(
             renderItem={item => <Paper item={item} />}
           />
         </PaddedRow>
-      )}
-      {authorNetworkLoading && <Spin />}
-      {authorNetwork && authorNetwork.papers && (
-        <NetworkGraph authorData={authorNetwork} />
       )}
     </Card>
   );
