@@ -3,7 +3,6 @@ import { List, Row, Col, Card, Icon, Badge, Popover } from "antd";
 import { Paper } from "./Paper";
 import { connect } from "react-redux";
 import { papers } from "../../actions";
-import { AuthorPopoverList } from "./AuthorPopoverList";
 import { PaperPopoverList } from "./PaperPopoverList";
 
 const mapStateToProps = state => {

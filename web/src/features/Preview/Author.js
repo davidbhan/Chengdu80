@@ -1,12 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Avatar, Card, Col, List, Row, Spin, Icon } from "antd";
+import { Avatar, Card, Col, List, Row, Icon } from "antd";
 import { Typography } from "antd";
 import { Paper } from "../CurateResults/Paper";
 import styled from "styled-components";
-import { NetworkGraph, NetworkGraphModal } from "../../components";
+import { NetworkGraphModal } from "../../components";
 import { uniq } from "lodash";
-import * as selection from "../../actions/selection";
 import { papers, paut } from "../../actions";
 
 const mapStateToProps = state => {
@@ -100,8 +99,8 @@ export const Author = connect(
         />
       </PaddedRow>
       {author && author.interests ? (
-        <PaddedRow style={{ overflowY: "scroll", height: 400 }}>
-          <Icon type="solution" />
+        <PaddedRow style={{ overflowY: "scroll", maxHeight: 200 }}>
+          <Icon type="solution" /> Expertise:
           {uniq(author.interests).map(val => (
             <PaddedText key={val} code>
               {val}

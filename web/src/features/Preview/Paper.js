@@ -84,8 +84,8 @@ export const Paper = connect(
         <Icon type="file-text" code />
         <PaddedText code>Cited in: {paper.citationCount} Papers</PaddedText>
       </PaddedRow>
-      <PaddedRow>
-        <Icon type="book" />
+      <PaddedRow style={{ overflowY: "scroll", maxHeight: 200 }}>
+        <Icon type="book" /> Keywords:
         {topics([...paper.topics.map(topic => topic.name), ...paper.keywords])}
       </PaddedRow>
       <PaddedRow>

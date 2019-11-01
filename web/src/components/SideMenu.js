@@ -76,7 +76,7 @@ class SideMenu extends React.Component {
             <Menu.Item key="search">
               <Link to={"/"}>
                 <Icon type="search" />
-                <span>Search</span>
+                <span>Home</span>
               </Link>
             </Menu.Item>
           </Menu>
