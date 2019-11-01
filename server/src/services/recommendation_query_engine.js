@@ -100,7 +100,19 @@ function generate_elastic_query(original_keyword, sorted_weights) {
       custom_keywords.push(temp_abs);
       custom_keywords.push(temp_title);
     });
-
+  const decay = {
+    gauss: {
+      "venue.venue_published_date": { scale: "700d" }
+    }
+  };
+  custom_keywords.push(decay);
+  const citation_ct = {
+    field_value_factor: {
+      field: "citation_count",
+      modifier: "log1p"
+    }
+  };
+  custom_keywords.push(citation_ct);
   return {
     query: {
       function_score: {
@@ -150,6 +162,14 @@ export const generate_elastic_query_author = (
         expertise_arr.push(temp_custom_keywords);
       });
   }
+
+  const prestige = {
+    field_value_factor: {
+      field: "prestige_score",
+      modifier: "log1p"
+    }
+  };
+  expertise_arr.push(prestige);
 
   return {
     query: {
