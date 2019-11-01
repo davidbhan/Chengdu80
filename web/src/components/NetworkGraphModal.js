@@ -24,16 +24,16 @@ export class NetworkGraphModal extends React.Component {
   };
 
   render() {
-    const { authorData, loading } = this.props;
+    const { authorData, loading, beta = false } = this.props;
     return (
       <div>
         <Button
           type="primary"
-          icon="global"
+          icon={beta ? "apartment" : "global"}
           onClick={this.showModal}
           loading={loading}
         >
-          Collaboration Network
+          {beta ? `Cluster Network (Beta)` : `Collaboration Network`}
         </Button>
         <Modal
           centered
@@ -44,7 +44,7 @@ export class NetworkGraphModal extends React.Component {
           width={"80%"}
         >
           {authorData && authorData.papers && (
-            <NetworkGraph authorData={authorData} />
+            <NetworkGraph authorData={authorData} beta={beta} />
           )}
         </Modal>
       </div>

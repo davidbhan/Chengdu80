@@ -3784,6 +3784,11 @@ dir-glob@2.0.0:
     arrify "^1.0.1"
     path-type "^3.0.0"
 
+directed-graph-map@^1.2.6:
+  version "1.2.6"
+  resolved "https://registry.yarnpkg.com/directed-graph-map/-/directed-graph-map-1.2.6.tgz#f0cf7e8a3f9f2af418293155d802a6e1fefdb0ee"
+  integrity sha512-dOs+CZOFz3GH2arbM3I9n1Qui2xu/Nx7Zqzy0Azq8eEyam+AWsFG/ZLEDISH+dPm2wwr8iqmuOd2Z98lQO3Ypg==
+
 dns-equal@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/dns-equal/-/dns-equal-1.0.0.tgz#b39e7f1da6eb0a75ba9c17324b34753c47e0654d"
@@ -6871,6 +6876,11 @@ lodash.camelcase@^4.3.0:
   version "4.3.0"
   resolved "https://registry.yarnpkg.com/lodash.camelcase/-/lodash.camelcase-4.3.0.tgz#b28aa6288a2b9fc651035c7711f65ab6190331a6"
   integrity sha1-soqmKIorn8ZRA1x3EfZathkDMaY=
+
+lodash.combinations@^18.9.19:
+  version "18.9.19"
+  resolved "https://registry.yarnpkg.com/lodash.combinations/-/lodash.combinations-18.9.19.tgz#36860c0f8861cc813bfbf3d3997749c9cde5bc62"
+  integrity sha512-dAiFhyz6Hl0QwI1GrwOAoDKcwWv2OOflTSD7n1RT6x5sId9+8wj875+aJgDzv2ga7gswXxrYH9bgsgnpcqlJ9g==
 
 lodash.debounce@^4.0.0, lodash.debounce@^4.0.8:
   version "4.0.8"
