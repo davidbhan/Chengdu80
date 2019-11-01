@@ -1,6 +1,6 @@
 import React from "react";
 import { Graph } from "react-d3-graph";
-import { uniqBy, flatten, maxBy, minBy } from "lodash";
+import { uniqBy, flatten, maxBy, minBy, map, max, min } from "lodash";
 import { connect } from "react-redux";
 import * as selection from "../actions/selection";
 import { Row } from "antd";
@@ -103,13 +103,23 @@ export const NetworkGraph = connect(
     }
     collaborationFrequency[key] += 1;
   }
+  const collaborationFrequencies = Object.values(collaborationFrequency);
+  const maxCollaboration = max(collaborationFrequencies);
+  const minCollaboration = min(collaborationFrequencies);
+  console.log(collaborationFrequencies);
+  console.log(maxCollaboration, minCollaboration);
   const links = uniqBy(allLinks, item => `${item.source};${item.target}`).map(
     ({ source, target }) => ({
       source,
       target,
-      strokeWidth: collaborationFrequency[`${source};${target}`]
+      strokeWidth:
+        1 +
+        (4 *
+          (collaborationFrequency[`${source};${target}`] - minCollaboration)) /
+          (maxCollaboration - minCollaboration)
     })
   );
+  console.log(links);
   return (
     <Row type={"flex"} justify={"center"} align={"middle"}>
       <Graph
