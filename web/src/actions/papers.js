@@ -30,14 +30,16 @@ export const getAllPapers = () => {
 export const getAuthors = () => {
   return (dispatch, getState) => {
     const currentState = getState();
+    console.log(currentState.papers.authors);
+    console.log(currentState.paut.authors);
     return dispatch({
       type: types.GET_AUTHORS,
       payload: {
         authors: lodash.take(
-          lodash.differenceWith(
+          lodash.differenceBy(
             currentState.papers.authors,
             currentState.paut.authors,
-            lodash.isEqual
+            "id"
           ),
           5
         )

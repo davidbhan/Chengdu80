@@ -25,9 +25,9 @@ export const renderAuthor = author_id => {
           type: types.SELECT_AUTHOR,
           payload: {
             value: {
-              ...res.data.data.author,
-              loading: false
-            }
+              ...res.data.data.author
+            },
+            loading: false
           }
         });
       })

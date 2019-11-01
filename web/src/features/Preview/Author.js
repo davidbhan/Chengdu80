@@ -6,6 +6,8 @@ import { Paper } from "../CurateResults/Paper";
 import styled from "styled-components";
 import { NetworkGraph } from "../../components";
 import { uniq } from "lodash";
+import * as selection from "../../actions/selection";
+import { papers, paut } from "../../actions";
 
 const mapStateToProps = state => {
   return {
@@ -16,7 +18,13 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => {
-  return {};
+  return {
+    likeAuthor: author => {
+      dispatch(paut.addAuthorToLike(author));
+      dispatch(papers.getAuthors());
+      dispatch(papers.getSearchPapers());
+    }
+  };
 };
 
 const PaddedRow = styled(Row)`
@@ -31,7 +39,7 @@ const PaddedText = styled(Typography.Text)`
 export const Author = connect(
   mapStateToProps,
   mapDispatchToProps
-)(({ author, authorNetwork, authorNetworkLoading }) => {
+)(({ author, authorNetwork, authorNetworkLoading, likeAuthor }) => {
   return (
     <Card>
       {author && (
@@ -43,8 +51,17 @@ export const Author = connect(
               <Avatar size={64} icon="user" />
             )}
           </Col>
-          <Col>
-            <Typography.Title level={3}>{author.name}</Typography.Title>
+          <Col span={16}>
+            <Typography.Title level={4}>{author.name}</Typography.Title>
+          </Col>
+          <Col span={2}>
+            <Icon
+              type="like"
+              onClick={() => {
+                likeAuthor(author);
+              }}
+              style={{ fontSize: "32px", color: "#08c" }}
+            />
           </Col>
         </Row>
       )}

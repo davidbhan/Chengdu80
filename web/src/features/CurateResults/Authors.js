@@ -8,7 +8,7 @@ import { AuthorPopoverList } from "./AuthorPopoverList";
 const mapStateToProps = state => {
   return {
     authors: state.papers.authors,
-    authorsSelected: state.paut.authors,
+    authorsBasket: state.paut.authors,
     loading: state.papers.loading
   };
 };
@@ -24,11 +24,10 @@ const mapDispatchToProps = dispatch => {
 export const Authors = connect(
   mapStateToProps,
   mapDispatchToProps
-)(({ authors, authorsSelected, getAuthors, loading }) => {
+)(({ authors, authorsBasket, getAuthors, loading }) => {
   useEffect(() => {
     getAuthors();
-  }, [loading]);
-
+  }, [loading, authorsBasket]);
   return (
     <Card>
       <Row type={"flex"} justify={"space-between"}>
@@ -43,10 +42,10 @@ export const Authors = connect(
         </Col>
         <Col>
           <Popover
-            content={<AuthorPopoverList content={authorsSelected} />}
+            content={<AuthorPopoverList content={authorsBasket} />}
             title="Liked authors"
           >
-            <Badge count={authorsSelected.length} showZero />
+            <Badge count={authorsBasket.length} showZero />
           </Popover>
         </Col>
       </Row>

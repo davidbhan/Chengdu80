@@ -4,6 +4,7 @@ import React from "react";
 import styled from "styled-components";
 import { map } from "lodash";
 import moment from "moment";
+import { papers, paut } from "../../actions";
 
 const mapStateToProps = state => {
   return {
@@ -12,7 +13,12 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => {
-  return {};
+  return {
+    likePaper: paper => {
+      dispatch(paut.addPaperToLike(paper));
+      dispatch(papers.getSearchPapers());
+    }
+  };
 };
 
 const PaddedRow = styled(Row)`
@@ -56,12 +62,21 @@ const topics = items => {
 export const Paper = connect(
   mapStateToProps,
   mapDispatchToProps
-)(({ paper }) => {
+)(({ paper, likePaper }) => {
   return (
     <Card>
       <Row type={"flex"}>
-        <Col>
+        <Col span={22}>
           <Typography.Title level={4}>{paper.title}</Typography.Title>
+        </Col>
+        <Col span={2}>
+          <Icon
+            type="like"
+            onClick={() => {
+              likePaper(paper);
+            }}
+            style={{ fontSize: "32px", color: "#08c" }}
+          />
         </Col>
       </Row>
       {authors(paper.authors)}
