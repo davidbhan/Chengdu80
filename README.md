@@ -35,3 +35,10 @@ This dashboard will open at localhost:5601/
 
 Navigate to a web browser and type localhost:4000/ a search window appears. 
 
+The search supports various types of queries involving research papers, research topics as well as paper authors.
+
+Some queries you can try are:
+- financial management
+- foreign direct investment
+- investment banking
+
