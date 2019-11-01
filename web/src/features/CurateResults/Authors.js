@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
-import { Badge, Card, Col, Icon, List, Row } from "antd";
+import { Badge, Card, Col, Icon, List, Popover, Row } from "antd";
 import { Author } from "./Author";
 import { connect } from "react-redux";
 import { papers } from "../../actions";
+import { PopoverList } from "./PopoverList";
 
 const mapStateToProps = state => {
   return {
@@ -41,7 +42,12 @@ export const Authors = connect(
           </h3>
         </Col>
         <Col>
-          <Badge count={authorsSelected.length} showZero />
+          <Popover
+            content={<PopoverList content={authorsSelected} />}
+            title="Liked authors"
+          >
+            <Badge count={authorsSelected.length} showZero />
+          </Popover>
         </Col>
       </Row>
       <List
